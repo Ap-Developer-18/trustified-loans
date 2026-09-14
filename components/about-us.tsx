@@ -67,7 +67,7 @@ export default function AboutUs() {
             lg:col-span-1 lg:row-span-2 lg:min-h-[500px]"
           >
             <img
-              src="/about-us-one.png"
+              src="/about-us-one.webp"
               alt="Trustified Loans consultation"
               className="h-full w-full rounded-[20px] object-cover
               transition-transform duration-700
@@ -140,7 +140,7 @@ export default function AboutUs() {
             lg:col-span-1"
           >
             <img
-              src="/about-us-two.png"
+              src="/about-us-two.webp"
               alt="Business and financial growth"
               className="h-full w-full rounded-[20px] object-cover
               transition-transform duration-700

@@ -133,7 +133,7 @@ export default function Hero() {
             sm:aspect-16/10"
           >
             <Image
-              src="/hero-img.png"
+              src="/hero-img.webp"
               fill
               priority
               sizes="(max-width: 640px) 100vw, (max-width: 1280px) 90vw, 1200px"
