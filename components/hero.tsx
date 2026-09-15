@@ -1,12 +1,28 @@
 // components/home/hero.tsx
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Container from "./common/container";
 import Button from "./common/button";
+import Modal from "@/components/common/modal";
+import ConsultationForm from "./consultation-form";
+
+const WHATSAPP_NUMBER = "919990533555";
+const WHATSAPP_MESSAGE =
+  "Hi, I'd like to talk to an expert about loan options.";
 
 export default function Hero() {
+  const [isConsultationOpen, setIsConsultationOpen] = useState(false);
+
+  const handleWhatsAppClick = () => {
+    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+      WHATSAPP_MESSAGE,
+    )}`;
+    window.open(url, "_blank", "noopener,noreferrer");
+  };
+
   return (
     <section
       id="hero"
@@ -85,9 +101,13 @@ export default function Hero() {
             className="mt-6 flex flex-col items-center justify-center gap-3
             sm:mt-8 sm:flex-row"
           >
-            <Button>Apply Now</Button>
+            <Button onClick={() => setIsConsultationOpen(true)}>
+              Apply Now
+            </Button>
 
-            <Button variant="light">Talk to an Expert</Button>
+            <Button variant="light" onClick={handleWhatsAppClick}>
+              Talk to an Expert
+            </Button>
           </motion.div>
 
           {/* Small Supporting Text */}
@@ -143,6 +163,15 @@ export default function Hero() {
           </div>
         </motion.div>
       </Container>
+
+      {/* Consultation Modal */}
+      <Modal
+        open={isConsultationOpen}
+        onClose={() => setIsConsultationOpen(false)}
+        className="max-w-xl p-6 sm:p-10"
+      >
+        <ConsultationForm />
+      </Modal>
     </section>
   );
 }
