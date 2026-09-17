@@ -58,7 +58,7 @@ export default function LoanProductCard({ product }: LoanProductCardProps) {
           {product.title}
         </h3>
 
-        <p className="text-sm font-medium leading-relaxed text-sand/80 line-clamp-3">
+        <p className="font-medium leading-relaxed text-sand/80 line-clamp-3">
           {product.description}
         </p>
       </div>

@@ -23,19 +23,11 @@ export default function AboutUs() {
           transition={{ duration: 0.5, ease: "easeOut" }}
           className="mx-auto mb-6 max-w-2xl px-2 text-center sm:mb-10 sm:px-0"
         >
-          <h2
-            className="font-serif text-2xl font-bold leading-[1.1]
-            tracking-tight text-cyprus
-            sm:text-4xl md:text-5xl"
-          >
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight leading-tight mb-2 text-cyprus">
             About Trustified Loans
           </h2>
 
-          <p
-            className="mx-auto mt-3 max-w-[320px]
-            text-xs font-medium leading-5 text-muted
-            sm:mt-4 sm:max-w-xl sm:text-base sm:leading-7"
-          >
+          <p className="text-base md:text-lg font-medium leading-relaxed text-muted">
             We make finding and understanding the right loan simple. Our team is
             here to guide you from your first enquiry to the loan process.
           </p>
@@ -87,11 +79,11 @@ export default function AboutUs() {
               delay: 0.1,
               ease: "easeOut",
             }}
-            className="rounded-[20px] bg-surface p-4
+            className="rounded-[20px] bg-surface p-6
             shadow-sm ring-1 ring-cyprus/5
             transition-all duration-300
             hover:-translate-y-1 hover:shadow-md
-            sm:p-6 sm:rounded-[24px]
+             sm:rounded-[24px]
             lg:col-span-1"
           >
             <div
@@ -110,8 +102,8 @@ export default function AboutUs() {
             </h3>
 
             <p
-              className="mt-2 text-xs font-medium leading-5
-              text-muted sm:mt-3 sm:text-sm sm:leading-6"
+              className="mt-2 font-medium leading-5
+              text-muted sm:mt-3 sm:leading-6 text-base"
             >
               We make the loan process easy to understand and help you with the
               right loan option and required documents.
@@ -149,11 +141,11 @@ export default function AboutUs() {
               delay: 0.2,
               ease: "easeOut",
             }}
-            className="rounded-[20px] bg-surface p-4
+            className="rounded-[20px] bg-surface p-6
             shadow-sm ring-1 ring-cyprus/5
             transition-all duration-300
             hover:-translate-y-1 hover:shadow-md
-            sm:p-6 sm:rounded-[24px]
+             sm:rounded-[24px]
             lg:col-span-1"
           >
             <div
@@ -171,7 +163,7 @@ export default function AboutUs() {
               Right Loan Options
             </h3>
 
-            <p className="mt-2 text-xs font-medium leading-5 text-muted sm:mt-3 sm:text-sm sm:leading-6">
+            <p className="mt-2 text-base font-medium leading-5 text-muted sm:mt-3 sm:leading-6">
               Whether you need a home, personal, business or property loan, we
               help you explore options based on your needs.
             </p>
@@ -185,11 +177,11 @@ export default function AboutUs() {
               delay: 0.25,
               ease: "easeOut",
             }}
-            className="rounded-[20px] bg-surface p-4
+            className="rounded-[20px] bg-surface p-6
             shadow-sm ring-1 ring-cyprus/5
             transition-all duration-300
             hover:-translate-y-1 hover:shadow-md
-            sm:p-6 sm:rounded-[24px]
+             sm:rounded-[24px]
             lg:col-span-2"
           >
             <div
@@ -213,8 +205,8 @@ export default function AboutUs() {
                 </h3>
 
                 <p
-                  className="mt-2 max-w-2xl text-xs font-medium
-                  leading-5 text-muted sm:mt-3 sm:text-sm sm:leading-6"
+                  className="mt-2 max-w-2xl font-medium
+                  leading-5 text-muted sm:mt-3 sm:leading-6"
                 >
                   We explain the loan process, requirements and available
                   options clearly, so you can make your decision with
@@ -232,10 +224,10 @@ export default function AboutUs() {
               delay: 0.3,
               ease: "easeOut",
             }}
-            className="rounded-[20px] bg-cyprus p-4 shadow-sm
+            className="rounded-[20px] bg-cyprus p-6 shadow-sm
             transition-all duration-300
             hover:-translate-y-1 hover:shadow-md
-            sm:p-6 sm:rounded-[24px]
+             sm:rounded-[24px]
             lg:col-span-1"
           >
             <div
@@ -254,8 +246,8 @@ export default function AboutUs() {
             </h3>
 
             <p
-              className="mt-2 text-xs font-medium leading-5
-              text-white/75 sm:mt-3 sm:text-sm sm:leading-6"
+              className="mt-2 font-medium leading-5
+              text-white/75 sm:mt-3 sm:leading-6"
             >
               From your first enquiry to the loan process, our team is here to
               guide and support you.

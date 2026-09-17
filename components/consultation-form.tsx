@@ -261,14 +261,14 @@ export default function ConsultationForm({
     };
 
   return (
-    <div className="relative w-full overflow-hidden rounded-[2.5rem] bg-surface p-6 sm:p-10 border border-border/80 shadow-[0_25px_60px_-15px_rgba(0,71,65,0.08)]">
+    <div className="relative w-full h-full overflow-hidden rounded-[2.5rem] bg-surface p-6 sm:p-10 border border-border/80 shadow-[0_25px_60px_-15px_rgba(0,71,65,0.08)]">
       <div className="pointer-events-none absolute -right-24 -top-24 h-56 w-56 rounded-full bg-cyprus/4 blur-3xl" />
 
       <div className="relative mb-8">
         <h3 className="font-serif text-2xl sm:text-3xl font-bold tracking-tight text-cyprus">
           Tell Us What You Need
         </h3>
-        <p className="mt-2 text-sm font-medium text-muted leading-relaxed">
+        <p className="mt-2 text-base font-medium text-muted leading-relaxed">
           Share a few details and our team will get in touch to guide you
           through the right loan option.
         </p>

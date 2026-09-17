@@ -5,6 +5,7 @@ import React from "react";
 import Link from "next/link";
 import Container from "../common/container";
 import { Phone, Mail } from "lucide-react";
+import Image from "next/image";
 
 const allLoans = [
   { name: "Cash Credit Limit", value: "cash-credit" },
@@ -30,16 +31,20 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-background text-cyprus pt-20 sm:pt-24 pb-12 relative z-30 overflow-hidden">
+    <footer className="bg-background text-cyprus pt-20 sm:pt-24 pb-6 lg:pb-12 relative z-30 overflow-hidden">
       <Container>
         {/* Main Footer Links Section */}
         <div className="grid grid-cols-2 md:grid-cols-12 gap-8 lg:gap-6 mb-16">
           {/* Brand & Social Column */}
           <div className="col-span-2 md:col-span-12 lg:col-span-5 space-y-5">
-            <span className="font-serif text-2xl font-bold tracking-tight text-cyprus block">
-              Trustified Loans
-            </span>
-            <p className="text-sm text-muted max-w-sm leading-relaxed font-medium">
+            {/* Logo */}
+            <Link href="/" className="flex items-center gap-1">
+              <Image width={40} height={40} src={"/logo.svg"} alt="logo" />
+              <span className="font-serif text-2xl font-bold tracking-tight text-cyprus md:text-3xl">
+                Trustified Loans
+              </span>
+            </Link>
+            <p className=" text-muted lg:max-w-sm leading-relaxed font-medium">
               A modern loan and financial solutions platform helping individuals
               and businesses navigate financing options with expert guidance and
               a simplified process.
@@ -48,10 +53,10 @@ export default function Footer() {
 
           {/* Company Column */}
           <div className="col-span-1 md:col-span-4 lg:col-span-2">
-            <p className="font-serif text-base font-bold text-cyprus mb-5">
+            <p className="font-serif text-xl font-bold text-cyprus mb-5">
               Company
             </p>
-            <ul className="space-y-3 text-sm font-medium text-muted">
+            <ul className="space-y-3  font-medium text-muted">
               <li>
                 <Link
                   href="#about"
@@ -81,10 +86,10 @@ export default function Footer() {
 
           {/* Loan Solutions (Links) Column */}
           <div className="col-span-1 md:col-span-4 lg:col-span-2">
-            <p className="font-serif text-base font-bold text-cyprus mb-5">
+            <p className="font-serif text-xl font-bold text-cyprus mb-5">
               Solutions
             </p>
-            <ul className="space-y-3 text-sm font-medium text-muted">
+            <ul className="space-y-3  font-medium text-muted">
               {allLoans.map((loan) => (
                 <li key={loan.value}>
                   <button
@@ -104,10 +109,10 @@ export default function Footer() {
 
           {/* Contact Us Column */}
           <div className="col-span-2 md:col-span-4 lg:col-span-3 space-y-4">
-            <p className="font-serif text-base font-bold text-cyprus mb-5">
+            <p className="font-serif text-xl font-bold text-cyprus mb-5">
               Contact Us
             </p>
-            <div className="space-y-3 text-sm font-medium text-muted">
+            <div className="space-y-3  font-medium text-muted">
               <a
                 href="tel:+919990533555"
                 className="flex items-center gap-3 hover:text-cyprus transition-colors"
@@ -115,9 +120,7 @@ export default function Footer() {
                 <div className="h-8 w-8 rounded-lg bg-cyprus/5 flex items-center justify-center text-cyprus shrink-0">
                   <Phone className="h-4 w-4" />
                 </div>
-                <span className="text-xs sm:text-sm whitespace-nowrap">
-                  +91 99905 33555
-                </span>
+                <span className=" whitespace-nowrap">+91 99905 33555</span>
               </a>
               <a
                 href="mailto:support@trustifiedloans.com"
@@ -126,7 +129,7 @@ export default function Footer() {
                 <div className="h-8 w-8 rounded-lg bg-cyprus/5 flex items-center justify-center text-cyprus shrink-0">
                   <Mail className="h-4 w-4" />
                 </div>
-                <span className="text-xs sm:text-sm break-words leading-tight">
+                <span className=" break-words leading-tight">
                   support@trustifiedloans.com
                 </span>
               </a>
@@ -135,7 +138,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Copyright & Legal Bar */}
-        <div className="pt-8 border-t border-border flex flex-col sm:flex-row items-center justify-between text-xs text-muted font-medium gap-4">
+        <div className="pt-6 lg:pt-8 border-t border-border flex flex-col sm:flex-row items-center justify-between text-xs text-muted font-medium gap-4">
           <p>
             © {new Date().getFullYear()} Trustified Loans. All rights reserved.
           </p>

@@ -40,7 +40,7 @@ export default function WhyChooseUs() {
                   <h3 className="font-serif text-xl font-bold leading-tight text-primary">
                     {item.title}
                   </h3>
-                  <p className="mt-2 text-sm font-medium leading-6 text-muted">
+                  <p className="mt-2 font-medium leading-6 text-muted">
                     {item.description}
                   </p>
                 </div>

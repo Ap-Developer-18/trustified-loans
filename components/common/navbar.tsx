@@ -74,8 +74,8 @@ export default function Navbar() {
               onClick={closeMenu}
               className="flex items-center gap-1"
             >
-              <Image width={30} height={30} src={"/logo.svg"} alt="logo" />
-              <span className="font-serif text-xl font-bold tracking-tight text-cyprus md:text-3xl">
+              <Image width={40} height={40} src={"/logo.svg"} alt="logo" />
+              <span className="font-serif text-2xl font-bold tracking-tight text-cyprus md:text-3xl">
                 Trustified Loans
               </span>
             </Link>

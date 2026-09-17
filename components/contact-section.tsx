@@ -7,7 +7,7 @@ import SectionHeading from "./common/section-heading";
 export default function ContactSection() {
   return (
     <section
-      className="relative overflow-hidden bg-background pt-20 sm:pt-24"
+      className="relative scroll-mt-6 overflow-hidden bg-background pt-20 sm:pt-24"
       id="contact"
     >
       <Container>
@@ -41,26 +41,15 @@ export default function ContactSection() {
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/30" />
 
               <div className="relative flex h-full flex-col">
-                {/* Top icon */}
-                <a
-                  href="#"
-                  className="group flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white/10 text-sand backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-sand hover:text-cyprus"
-                >
-                  <ArrowUpRight className="h-5 w-5" />
-                </a>
-
                 {/* Heading */}
-                <div className="mt-8">
+                <div>
                   <h3 className="font-serif text-2xl font-bold leading-tight text-sand sm:text-[28px]">
                     India&apos;s Most Trusted Financial Partner
                   </h3>
-                  <p className="mt-2 text-sm font-medium text-sand/60">
+                  <p className="mt-2 text-base font-medium text-sand/60">
                     Guiding 10,000+ customers to the right loan.
                   </p>
                 </div>
-
-                {/* Spacer to push contact list down, like reference */}
-                <div className="flex-1" />
 
                 {/* Contact Info List */}
                 <div className="mt-10 space-y-0 divide-y divide-white/10">
@@ -70,10 +59,10 @@ export default function ContactSection() {
                       <MapPin className="h-[18px] w-[18px]" />
                     </div>
                     <div className="min-w-0 flex-1">
-                      <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-sand/50">
+                      <p className="text-sm font-semibold uppercase tracking-[0.1em] text-sand/50">
                         Office Location
                       </p>
-                      <p className="mt-0.5 text-[13px] font-medium leading-5 text-sand/90">
+                      <p className="mt-0.5 font-medium leading-5 text-sand/90">
                         Malerna, Near PNB, Delhi Mumbai Expressway, Sector 142,
                         Faridabad
                       </p>
@@ -89,10 +78,10 @@ export default function ContactSection() {
                       <Phone className="h-[18px] w-[18px]" />
                     </div>
                     <div className="min-w-0 flex-1">
-                      <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-sand/50">
+                      <p className="text-sm font-semibold uppercase tracking-[0.1em] text-sand/50">
                         Direct Phone Line
                       </p>
-                      <p className="mt-0.5 text-[15px] font-bold text-sand">
+                      <p className="mt-0.5 text-base font-bold text-sand">
                         +91 99905 33555
                       </p>
                     </div>
@@ -108,10 +97,10 @@ export default function ContactSection() {
                       <Mail className="h-[18px] w-[18px]" />
                     </div>
                     <div className="min-w-0 flex-1">
-                      <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-sand/50">
+                      <p className="text-sm font-semibold uppercase tracking-[0.1em] text-sand/50">
                         Email Support
                       </p>
-                      <p className="mt-0.5 truncate text-[15px] font-bold text-sand">
+                      <p className="mt-0.5 truncate text-base font-bold text-sand">
                         support@trustifiedloans.com
                       </p>
                     </div>
@@ -124,10 +113,10 @@ export default function ContactSection() {
                       <Clock className="h-[18px] w-[18px]" />
                     </div>
                     <div className="min-w-0 flex-1">
-                      <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-sand/50">
+                      <p className="text-sm font-semibold uppercase tracking-[0.1em] text-sand/50">
                         Working Hours
                       </p>
-                      <p className="mt-0.5 text-[15px] font-bold text-sand">
+                      <p className="mt-0.5 text-base font-bold text-sand">
                         Mon – Sat · 9:00 AM – 7:00 PM
                       </p>
                     </div>

@@ -73,7 +73,7 @@ export default function Hero() {
             <span className="text-cyprus/90">For Your Needs.</span>
           </h1>
 
-          <p className="mx-auto mt-4 max-w-85 text-sm font-medium leading-6 text-muted sm:mt-6 sm:max-w-2xl sm:text-base sm:leading-7 md:text-lg md:leading-8">
+          <p className="mx-auto mt-4 font-medium leading-6 text-muted sm:mt-6 sm:max-w-2xl sm:text-base sm:leading-7 md:text-lg md:leading-8">
             Home Loans, Personal Loans, Business Loans and more — we help you
             find the right loan with simple guidance and a hassle-free process.
           </p>
