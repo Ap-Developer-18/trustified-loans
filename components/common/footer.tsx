@@ -13,18 +13,16 @@ const allLoans = [
   { name: "Home Loan", value: "home-loan" },
   { name: "Personal Loan", value: "personal-loan" },
   { name: "Business Loan", value: "business-loan" },
-  { name: "View All", value: "/#loans" }, // Yahan "/#loans" hai
+  { name: "View All", value: "/#loans" },
 ];
 
 export default function Footer() {
   const handleLoanClick = (loanValue: string) => {
-    // Agar 'View All' par click kiya, toh seedha /#loans par bhej do
     if (loanValue === "/#loans") {
       window.location.href = loanValue;
       return;
     }
 
-    // Baaki kisi bhi loan link par click kiya toh seedha Modal khul jayega
     window.dispatchEvent(
       new CustomEvent("select-loan-type", { detail: loanValue }),
     );
@@ -33,11 +31,8 @@ export default function Footer() {
   return (
     <footer className="bg-background text-cyprus pt-20 sm:pt-24 pb-6 lg:pb-12 relative z-30 overflow-hidden">
       <Container>
-        {/* Main Footer Links Section */}
         <div className="grid grid-cols-2 md:grid-cols-12 gap-8 lg:gap-6 mb-16">
-          {/* Brand & Social Column */}
           <div className="col-span-2 md:col-span-12 lg:col-span-5 space-y-5">
-            {/* Logo */}
             <Link href="/" className="flex items-center gap-1">
               <Image width={40} height={40} src={"/logo.svg"} alt="logo" />
               <span className="font-serif text-2xl font-bold tracking-tight text-cyprus md:text-3xl">

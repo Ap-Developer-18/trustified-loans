@@ -16,26 +16,23 @@ export default function Hero() {
   const [isConsultationOpen, setIsConsultationOpen] = useState(false);
   const [selectedLoan, setSelectedLoan] = useState<string>("");
 
-  // 👇 YEH CODE BOHOT ZARURI HAI MODAL OPEN KARNE KE LIYE
   useEffect(() => {
     const handleSelectLoan = (e: Event) => {
       const customEvent = e as CustomEvent<string>;
       console.log(
         "Event Received in Hero! Opening form for:",
         customEvent.detail,
-      ); // Debugging ke liye
+      );
       setSelectedLoan(customEvent.detail);
       setIsConsultationOpen(true);
     };
 
-    // Event listener lagaya
     window.addEventListener("select-loan-type", handleSelectLoan);
 
     return () => {
       window.removeEventListener("select-loan-type", handleSelectLoan);
     };
   }, []);
-  // 👆 YAHAN TAK
 
   const handleWhatsAppClick = () => {
     const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
