@@ -127,7 +127,6 @@ export default function Hero() {
       <Modal
         open={isConsultationOpen}
         onClose={() => setIsConsultationOpen(false)}
-        className="max-w-xl p-6 sm:p-10"
       >
         <ConsultationForm preselectedLoan={selectedLoan} />
       </Modal>

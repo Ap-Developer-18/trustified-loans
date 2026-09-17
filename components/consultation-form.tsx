@@ -158,7 +158,7 @@ function CustomDropdown({
                     onChange(opt.value);
                     setOpen(false);
                   }}
-                  className={`w-full text-left px-4 py-3 text-xs sm:text-sm transition-colors flex items-center justify-between ${
+                  className={`w-full text-left px-4 py-3 transition-colors flex items-center justify-between ${
                     value === opt.value
                       ? "text-cyprus bg-cyprus/5 font-semibold"
                       : "text-muted hover:text-cyprus hover:bg-black/2"

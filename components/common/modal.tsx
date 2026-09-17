@@ -55,7 +55,7 @@ export default function Modal({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 12 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
-            className={`relative w-full max-h-[90vh] overflow-y-auto ${className}`}
+            className={`relative w-full max-h-[90vh] p-0! sm:p-0! overflow-y-auto ${className}`}
           >
             {/* Close button */}
             <button
