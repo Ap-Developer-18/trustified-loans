@@ -13,7 +13,7 @@ const cardAnimation = {
 export default function AboutUs() {
   return (
     <section
-      className="relative overflow-hidden bg-background pt-16 sm:pt-20 lg:pt-24"
+      className="relative scroll-mt-6 overflow-hidden bg-background pt-16 sm:pt-20 lg:pt-24"
       id="about"
     >
       <Container>

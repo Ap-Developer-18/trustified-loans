@@ -9,7 +9,7 @@ import { whyChooseUsBenefits } from "@/data/loan-products";
 
 export default function WhyChooseUs() {
   return (
-    <section className="relative z-10 pt-20 sm:pt-24" id="why-us">
+    <section className="relative scroll-mt-6 z-10 pt-20 sm:pt-24" id="why-us">
       <Container>
         <SectionHeading
           title="Why Choose Trustified Loans?"

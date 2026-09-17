@@ -12,11 +12,12 @@ import {
 import { Menu, X, ArrowRight } from "lucide-react";
 import Container from "../common/container";
 import Button from "../common/button";
+import Image from "next/image";
 
 const NAV_LINKS = [
   { label: "Home", href: "/" },
   { label: "About Us", href: "#about" },
-  { label: "Loans", href: "#products" },
+  { label: "Loans", href: "#loans" },
   { label: "Why Us", href: "#why-us" },
 ] as const;
 
@@ -71,15 +72,16 @@ export default function Navbar() {
             <Link
               href="/"
               onClick={closeMenu}
-              className="flex items-center gap-2.5"
+              className="flex items-center gap-1"
             >
+              <Image width={30} height={30} src={"/logo.svg"} alt="logo" />
               <span className="font-serif text-xl font-bold tracking-tight text-cyprus md:text-3xl">
                 Trustified Loans
               </span>
             </Link>
 
             {/* Desktop nav */}
-            <nav className="hidden items-center gap-1 rounded-full bg-surface/80 px-2.5 py-1.5 shadow-sm border border-cyprus/5 md:flex">
+            <nav className="hidden items-center gap-1 rounded-full bg-surface/80 px-2.5 py-1.5 shadow-sm border border-cyprus/5 lg:flex">
               {NAV_LINKS.map(({ label, href }) => (
                 <Link key={href} href={href} className={desktopLinkClass}>
                   {label}
@@ -88,7 +90,7 @@ export default function Navbar() {
             </nav>
 
             {/* Desktop CTA */}
-            <div className="hidden md:flex">
+            <div className="hidden lg:flex">
               <Button
                 variant="primary"
                 size="md"
@@ -104,7 +106,7 @@ export default function Navbar() {
             <button
               type="button"
               onClick={() => setMenuOpen((open) => !open)}
-              className="flex h-10 w-10 items-center justify-center rounded-xl bg-surface text-cyprus shadow-sm border border-cyprus/5 transition-colors hover:bg-surface/80 md:hidden"
+              className="flex h-10 w-10 items-center justify-center rounded-xl bg-surface text-cyprus shadow-sm border border-cyprus/5 transition-colors hover:bg-surface/80 lg:hidden"
               aria-label={menuOpen ? "Close menu" : "Open menu"}
               aria-expanded={menuOpen}
               aria-controls="mobile-menu"
@@ -136,7 +138,7 @@ export default function Navbar() {
                 animate={{ opacity: 1, height: "auto" }}
                 exit={{ opacity: 0, height: 0 }}
                 transition={{ duration: 0.25, ease: "easeOut" }}
-                className="overflow-hidden md:hidden pb-3"
+                className="overflow-hidden lg:hidden pb-3"
               >
                 <div className="rounded-2xl bg-surface p-4 border border-cyprus/10">
                   <nav className="flex flex-col">

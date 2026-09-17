@@ -7,7 +7,7 @@ import SectionHeading from "./common/section-heading";
 export default function ContactSection() {
   return (
     <section
-      className="relative overflow-hidden bg-background py-20 sm:py-24"
+      className="relative overflow-hidden bg-background pt-20 sm:pt-24"
       id="contact"
     >
       <Container>

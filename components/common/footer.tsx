@@ -12,30 +12,25 @@ const allLoans = [
   { name: "Home Loan", value: "home-loan" },
   { name: "Personal Loan", value: "personal-loan" },
   { name: "Business Loan", value: "business-loan" },
-  { name: "View All", value: "#products" },
+  { name: "View All", value: "/#loans" }, // Yahan "/#loans" hai
 ];
 
 export default function Footer() {
   const handleLoanClick = (loanValue: string) => {
-    if (loanValue === "#products") {
-      const productsSection = document.getElementById("products");
-      if (productsSection) {
-        productsSection.scrollIntoView({ behavior: "smooth" });
-      }
+    // Agar 'View All' par click kiya, toh seedha /#loans par bhej do
+    if (loanValue === "/#loans") {
+      window.location.href = loanValue;
       return;
     }
 
-    const contactSection = document.getElementById("contact");
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: "smooth" });
-    }
+    // Baaki kisi bhi loan link par click kiya toh seedha Modal khul jayega
     window.dispatchEvent(
       new CustomEvent("select-loan-type", { detail: loanValue }),
     );
   };
 
   return (
-    <footer className="bg-background text-cyprus pt-16 pb-12 relative z-30 overflow-hidden">
+    <footer className="bg-background text-cyprus pt-20 sm:pt-24 pb-12 relative z-30 overflow-hidden">
       <Container>
         {/* Main Footer Links Section */}
         <div className="grid grid-cols-2 md:grid-cols-12 gap-8 lg:gap-6 mb-16">
@@ -67,10 +62,10 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="#products"
+                  href="#loans"
                   className="hover:text-cyprus transition-colors"
                 >
-                  Services
+                  Loans
                 </Link>
               </li>
               <li>
@@ -79,14 +74,6 @@ export default function Footer() {
                   className="hover:text-cyprus transition-colors"
                 >
                   Why Choose Us
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#how-it-works"
-                  className="hover:text-cyprus transition-colors"
-                >
-                  Testimonial
                 </Link>
               </li>
             </ul>
@@ -103,7 +90,7 @@ export default function Footer() {
                   <button
                     onClick={() => handleLoanClick(loan.value)}
                     className={`hover:text-cyprus transition-colors text-left cursor-pointer ${
-                      loan.value === "#products"
+                      loan.value === "/#loans" // Yahan styling ke liye bhi condition update kar di hai
                         ? "font-bold text-cyprus underline underline-offset-4"
                         : ""
                     }`}

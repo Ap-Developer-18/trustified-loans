@@ -8,7 +8,10 @@ import { loanProducts } from "@/data/loan-products";
 
 export default function ProductGrid() {
   return (
-    <section className="relative overflow-hidden bg-background pt-20 sm:pt-24">
+    <section
+      id="loans"
+      className="relative scroll-mt-6 overflow-hidden bg-background pt-20 sm:pt-24"
+    >
       <Container>
         <SectionHeading
           title="Loans for Every Need"
