@@ -7,14 +7,9 @@ import dynamic from "next/dynamic";
 import Container from "./common/container";
 import Button from "./common/button";
 
-const Modal = dynamic(() => import("@/components/common/modal"), { 
-  ssr: false, 
-  loading: () => null 
-});
-const ConsultationForm = dynamic(() => import("./consultation-form"), { 
-  ssr: false,
-  loading: () => null
-});
+// 1. DYNAMIC IMPORTS: Lazy load the modal and form to slash initial JS payload
+const Modal = dynamic(() => import("@/components/common/modal"), { ssr: false });
+const ConsultationForm = dynamic(() => import("./consultation-form"), { ssr: false });
 
 const WHATSAPP_NUMBER = "919990533555";
 const WHATSAPP_MESSAGE = "Hi, I'd like to talk to an expert about loan options.";
@@ -111,16 +106,15 @@ export default function Hero() {
         >
           <div className="relative w-full aspect-4/3 sm:aspect-16/10">
             {/* 2. IMAGE OPTIMIZATION: Added fetchPriority and fine-tuned sizes */}
-         <Image
-  src="/hero-img.webp"
-  alt="Trustified Loans - Loan consultation"
-  fill
-  priority
-  fetchPriority="high"
-  quality={85} 
-  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 1024px"
-  className="object-contain drop-shadow-sm"
-/>
+            <Image
+              src="/hero-img.webp"
+              fill
+              priority
+              fetchPriority="high"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1024px"
+              alt="Trustified Loans - Loan consultation"
+              className="object-contain drop-shadow-sm"
+            />
           </div>
         </motion.div>
       </Container>
