@@ -34,42 +34,13 @@ const LOAN_OPTIONS = [
 ];
 
 const INDIAN_STATES = [
-  "Andeman Nikobar Islands",
-  "Andhra Pradesh",
-  "Arunachal Pradesh",
-  "Assam",
-  "Bihar",
-  "Chandigarh",
-  "Chhattisgarh",
-  "Dadra Nagar Haveli Daman Diu",
-  "Delhi",
-  "Goa",
-  "Gujarat",
-  "Haryana",
-  "Himachal Pradesh",
-  "Jammu Kashmir",
-  "Jharkhand",
-  "Karnataka",
-  "Kerala",
-  "Ladakh",
-  "Lakshadweep",
-  "Madhya Pradesh",
-  "Maharashtra",
-  "Manipur",
-  "Meghalaya",
-  "Mizoram",
-  "Nagaland",
-  "Odisha",
-  "Puducherry",
-  "Punjab",
-  "Rajasthan",
-  "Sikkim",
-  "Tamil Nadu",
-  "Telangana",
-  "Tripura",
-  "Uttar Pradesh",
-  "Uttarakhand",
-  "West Bengal",
+  "Andeman Nikobar Islands", "Andhra Pradesh", "Arunachal Pradesh", "Assam",
+  "Bihar", "Chandigarh", "Chhattisgarh", "Dadra Nagar Haveli Daman Diu",
+  "Delhi", "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jammu Kashmir",
+  "Jharkhand", "Karnataka", "Kerala", "Ladakh", "Lakshadweep", "Madhya Pradesh",
+  "Maharashtra", "Manipur", "Meghalaya", "Mizoram", "Nagaland", "Odisha",
+  "Puducherry", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana",
+  "Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal",
 ];
 
 interface DropdownProps {
@@ -80,13 +51,7 @@ interface DropdownProps {
   placeholder: string;
 }
 
-function CustomDropdown({
-  value,
-  onChange,
-  error,
-  options,
-  placeholder,
-}: DropdownProps) {
+function CustomDropdown({ value, onChange, error, options, placeholder }: DropdownProps) {
   const [open, setOpen] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
@@ -107,34 +72,19 @@ function CustomDropdown({
         type="button"
         onClick={() => setOpen((p) => !p)}
         className={`w-full flex items-center justify-between bg-black/3 border rounded-2xl px-5 h-13 sm:h-14 text-sm transition-colors focus:outline-none hover:bg-black/5 ${
-          error
-            ? "border-red-500/60"
-            : open
-              ? "border-cyprus bg-white"
-              : "border-transparent"
+          error ? "border-red-500/60" : open ? "border-cyprus bg-white" : "border-transparent"
         }`}
       >
-        <span
-          className={selected ? "text-cyprus font-medium" : "text-muted/40"}
-        >
+        <span className={selected ? "text-cyprus font-medium" : "text-muted/40"}>
           {selected ? selected.label : placeholder}
         </span>
         <motion.svg
           animate={{ rotate: open ? 180 : 0 }}
           transition={{ duration: 0.2 }}
-          width="16"
-          height="16"
-          viewBox="0 0 16 16"
-          fill="none"
+          width="16" height="16" viewBox="0 0 16 16" fill="none"
           className="text-muted shrink-0 ml-2"
         >
-          <path
-            d="M4 6l4 4 4-4"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
+          <path d="M4 6l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
         </motion.svg>
       </button>
 
@@ -154,10 +104,7 @@ function CustomDropdown({
                 <button
                   key={opt.value}
                   type="button"
-                  onClick={() => {
-                    onChange(opt.value);
-                    setOpen(false);
-                  }}
+                  onClick={() => { onChange(opt.value); setOpen(false); }}
                   className={`w-full text-left px-4 py-3 transition-colors flex items-center justify-between ${
                     value === opt.value
                       ? "text-cyprus bg-cyprus/5 font-semibold"
@@ -166,20 +113,8 @@ function CustomDropdown({
                 >
                   <span>{opt.label}</span>
                   {value === opt.value && (
-                    <svg
-                      width="14"
-                      height="14"
-                      viewBox="0 0 14 14"
-                      fill="none"
-                      className="text-cyprus shrink-0 ml-2"
-                    >
-                      <path
-                        d="M2.5 7l3.5 3.5 5.5-6"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="text-cyprus shrink-0 ml-2">
+                      <path d="M2.5 7l3.5 3.5 5.5-6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   )}
                 </button>
@@ -196,10 +131,7 @@ interface ConsultationFormProps {
   preselectedLoan?: string;
 }
 
-export default function ConsultationForm({
-  preselectedLoan = "",
-}: ConsultationFormProps) {
-  // 👇 Koi heavy function nahi, seedha value form me jayegi
+export default function ConsultationForm({ preselectedLoan = "" }: ConsultationFormProps) {
   const [form, setForm] = useState<ConsultationFormValues>({
     fullName: "",
     state: "",
@@ -208,26 +140,25 @@ export default function ConsultationForm({
   });
 
   const [errors, setErrors] = useState<FormErrors>({});
+  const [submitError, setSubmitError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
-    setForm((prev) => ({
-      ...prev,
-      loanType: preselectedLoan,
-    }));
+    setForm((prev) => ({ ...prev, loanType: preselectedLoan }));
   }, [preselectedLoan]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (isSubmitting) return;
 
+    setSubmitError("");
     const result = consultationSchema.safeParse(form);
+    
     if (!result.success) {
       const fieldErrors: FormErrors = {};
       result.error.issues.forEach((issue) => {
-        fieldErrors[issue.path[0] as keyof ConsultationFormValues] =
-          issue.message;
+        fieldErrors[issue.path[0] as keyof ConsultationFormValues] = issue.message;
       });
       setErrors(fieldErrors);
       return;
@@ -237,28 +168,41 @@ export default function ConsultationForm({
     setIsSubmitting(true);
 
     try {
+      // API INTEGRATION: Sending data to our route
       const res = await fetch("/api/consultation", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(result.data),
       });
+      
       const json = await res.json();
-      if (!json.success) throw new Error(json.error);
+      
+      if (!res.ok || !json.success) {
+        throw new Error(json.error || "Failed to submit request.");
+      }
+      
       setSubmitted(true);
-    } catch (err) {
+    } catch (err: any) {
       console.error("Submit failed:", err);
-      setSubmitted(true);
+      setSubmitError(err.message || "Something went wrong. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  const setField =
-    (field: keyof ConsultationFormValues) =>
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      setForm((p) => ({ ...p, [field]: e.target.value }));
-      if (errors[field]) setErrors((p) => ({ ...p, [field]: undefined }));
-    };
+  const setField = (field: keyof ConsultationFormValues) => (e: React.ChangeEvent<HTMLInputElement>) => {
+    setForm((p) => ({ ...p, [field]: e.target.value }));
+    if (errors[field]) setErrors((p) => ({ ...p, [field]: undefined }));
+    if (submitError) setSubmitError("");
+  };
+
+  // Only allow numbers in phone input
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const onlyNumbers = e.target.value.replace(/\D/g, "");
+    setForm((p) => ({ ...p, phone: onlyNumbers }));
+    if (errors.phone) setErrors((p) => ({ ...p, phone: undefined }));
+    if (submitError) setSubmitError("");
+  };
 
   return (
     <div className="relative w-full h-full overflow-hidden rounded-[2.5rem] bg-surface p-6 sm:p-10 border border-border/80 shadow-[0_25px_60px_-15px_rgba(0,71,65,0.08)]">
@@ -269,8 +213,7 @@ export default function ConsultationForm({
           Tell Us What You Need
         </h3>
         <p className="mt-2 text-base font-medium text-muted leading-relaxed">
-          Share a few details and our team will get in touch to guide you
-          through the right loan option.
+          Share a few details and our team will get in touch to guide you through the right loan option.
         </p>
       </div>
 
@@ -283,17 +226,19 @@ export default function ConsultationForm({
             Request Received
           </h4>
           <p className="text-sm text-muted">
-            Thank you, {form.fullName}. Our financial expert will call you back
-            shortly at +91 {form.phone}.
+            Thank you, {form.fullName}. Our financial expert will call you back shortly at +91 {form.phone}.
           </p>
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="relative space-y-5">
+          {submitError && (
+            <div className="p-3 bg-red-500/10 border border-red-500/20 rounded-xl text-red-500 text-sm font-medium text-center">
+              {submitError}
+            </div>
+          )}
+
           <div>
-            <label
-              htmlFor="full-name"
-              className="mb-2 block text-xs font-bold uppercase tracking-[0.12em] text-cyprus/80"
-            >
+            <label htmlFor="full-name" className="mb-2 block text-xs font-bold uppercase tracking-[0.12em] text-cyprus/80">
               Full Name
             </label>
             <input
@@ -302,28 +247,22 @@ export default function ConsultationForm({
               disabled={isSubmitting}
               value={form.fullName}
               onChange={setField("fullName")}
-              placeholder="Aman Punia"
+              placeholder="e.g., Daksh Rawat"
               className={`h-13 sm:h-14 w-full rounded-2xl bg-black/3 px-5 text-sm font-medium text-cyprus outline-none transition-all duration-300 placeholder:text-muted/40 hover:bg-black/5 focus:bg-white focus:ring-2 focus:ring-cyprus/20 border ${errors.fullName ? "border-red-500" : "border-transparent focus:border-cyprus"}`}
             />
-            {errors.fullName && (
-              <p className="mt-1.5 text-xs text-red-500">{errors.fullName}</p>
-            )}
+            {errors.fullName && <p className="mt-1.5 text-xs text-red-500">{errors.fullName}</p>}
           </div>
 
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
             <div>
-              <label
-                htmlFor="state"
-                className="mb-2 block text-xs font-bold uppercase tracking-[0.12em] text-cyprus/80"
-              >
+              <label htmlFor="state" className="mb-2 block text-xs font-bold uppercase tracking-[0.12em] text-cyprus/80">
                 State
               </label>
               <CustomDropdown
                 value={form.state}
                 onChange={(val) => {
                   setForm((p) => ({ ...p, state: val }));
-                  if (errors.state)
-                    setErrors((p) => ({ ...p, state: undefined }));
+                  if (errors.state) setErrors((p) => ({ ...p, state: undefined }));
                 }}
                 error={errors.state}
                 options={INDIAN_STATES.map((s) => ({ value: s, label: s }))}
@@ -331,18 +270,14 @@ export default function ConsultationForm({
               />
             </div>
             <div>
-              <label
-                htmlFor="loan-type"
-                className="mb-2 block text-xs font-bold uppercase tracking-[0.12em] text-cyprus/80"
-              >
+              <label htmlFor="loan-type" className="mb-2 block text-xs font-bold uppercase tracking-[0.12em] text-cyprus/80">
                 Loan Type
               </label>
               <CustomDropdown
                 value={form.loanType}
                 onChange={(val) => {
                   setForm((p) => ({ ...p, loanType: val }));
-                  if (errors.loanType)
-                    setErrors((p) => ({ ...p, loanType: undefined }));
+                  if (errors.loanType) setErrors((p) => ({ ...p, loanType: undefined }));
                 }}
                 error={errors.loanType}
                 options={LOAN_OPTIONS}
@@ -352,15 +287,10 @@ export default function ConsultationForm({
           </div>
 
           <div>
-            <label
-              htmlFor="phone"
-              className="mb-2 block text-xs font-bold uppercase tracking-[0.12em] text-cyprus/80"
-            >
+            <label htmlFor="phone" className="mb-2 block text-xs font-bold uppercase tracking-[0.12em] text-cyprus/80">
               Mobile Number
             </label>
-            <div
-              className={`flex h-13 sm:h-14 overflow-hidden rounded-2xl bg-black/3 border transition-all duration-300 focus-within:bg-white focus-within:ring-2 focus-within:ring-cyprus/20 hover:bg-black/5 ${errors.phone ? "border-red-500" : "border-transparent focus-within:border-cyprus"}`}
-            >
+            <div className={`flex h-13 sm:h-14 overflow-hidden rounded-2xl bg-black/3 border transition-all duration-300 focus-within:bg-white focus-within:ring-2 focus-within:ring-cyprus/20 hover:bg-black/5 ${errors.phone ? "border-red-500" : "border-transparent focus-within:border-cyprus"}`}>
               <span className="flex items-center px-5 text-sm font-bold text-cyprus/60 bg-black/2 border-r border-black/5">
                 +91
               </span>
@@ -371,23 +301,20 @@ export default function ConsultationForm({
                 inputMode="numeric"
                 maxLength={10}
                 value={form.phone}
-                onChange={setField("phone")}
+                onChange={handlePhoneChange}
                 placeholder="98765 43210"
                 className="min-w-0 flex-1 bg-transparent px-4 text-sm font-medium text-cyprus outline-none placeholder:text-muted/40"
               />
             </div>
-            {errors.phone && (
-              <p className="mt-1.5 text-xs text-red-500">{errors.phone}</p>
-            )}
+            {errors.phone && <p className="mt-1.5 text-xs text-red-500">{errors.phone}</p>}
           </div>
 
           <div className="pt-2">
             <Button
-              variant="primary"
               disabled={isSubmitting}
-              className="w-full rounded-2xl py-4 text-sm font-bold tracking-wide shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg sm:py-4.5 sm:text-base flex items-center justify-center gap-2"
+              className="w-full rounded-2xl py-4 text-sm font-bold tracking-wide shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg sm:py-4.5 sm:text-base flex items-center justify-center gap-2 bg-cyprus text-sand"
             >
-              {isSubmitting ? "Submitting..." : "Get Free Consultation"}
+              {isSubmitting ? "Submitting Request..." : "Get Free Consultation"}
             </Button>
             <p className="mt-3 text-center text-xs font-medium text-muted/70">
               Our team will contact you shortly.

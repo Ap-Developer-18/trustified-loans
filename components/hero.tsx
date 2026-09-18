@@ -3,14 +3,16 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import Container from "./common/container";
 import Button from "./common/button";
-import Modal from "@/components/common/modal";
-import ConsultationForm from "./consultation-form";
+
+// 1. DYNAMIC IMPORTS: Lazy load the modal and form to slash initial JS payload
+const Modal = dynamic(() => import("@/components/common/modal"), { ssr: false });
+const ConsultationForm = dynamic(() => import("./consultation-form"), { ssr: false });
 
 const WHATSAPP_NUMBER = "919990533555";
-const WHATSAPP_MESSAGE =
-  "Hi, I'd like to talk to an expert about loan options.";
+const WHATSAPP_MESSAGE = "Hi, I'd like to talk to an expert about loan options.";
 
 export default function Hero() {
   const [isConsultationOpen, setIsConsultationOpen] = useState(false);
@@ -19,25 +21,16 @@ export default function Hero() {
   useEffect(() => {
     const handleSelectLoan = (e: Event) => {
       const customEvent = e as CustomEvent<string>;
-      console.log(
-        "Event Received in Hero! Opening form for:",
-        customEvent.detail,
-      );
       setSelectedLoan(customEvent.detail);
       setIsConsultationOpen(true);
     };
 
     window.addEventListener("select-loan-type", handleSelectLoan);
-
-    return () => {
-      window.removeEventListener("select-loan-type", handleSelectLoan);
-    };
+    return () => window.removeEventListener("select-loan-type", handleSelectLoan);
   }, []);
 
   const handleWhatsAppClick = () => {
-    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-      WHATSAPP_MESSAGE,
-    )}`;
+    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
     window.open(url, "_blank", "noopener,noreferrer");
   };
 
@@ -112,11 +105,13 @@ export default function Hero() {
           className="relative mx-auto -mb-2 flex w-full max-w-6xl justify-center px-0 sm:px-4"
         >
           <div className="relative w-full aspect-4/3 sm:aspect-16/10">
+            {/* 2. IMAGE OPTIMIZATION: Added fetchPriority and fine-tuned sizes */}
             <Image
               src="/hero-img.webp"
               fill
               priority
-              sizes="(max-width: 640px) 100vw, (max-width: 1280px) 90vw, 1200px"
+              fetchPriority="high"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1024px"
               alt="Trustified Loans - Loan consultation"
               className="object-contain drop-shadow-sm"
             />
@@ -124,12 +119,17 @@ export default function Hero() {
         </motion.div>
       </Container>
 
-      <Modal
-        open={isConsultationOpen}
-        onClose={() => setIsConsultationOpen(false)}
-      >
-        <ConsultationForm preselectedLoan={selectedLoan} />
-      </Modal>
+      {/* 3. CONDITIONAL RENDERING: Don't pollute the DOM until the user clicks */}
+      {isConsultationOpen && (
+        <Modal
+          open={isConsultationOpen}
+          onClose={() => setIsConsultationOpen(false)}
+        >
+          <div className="mx-auto w-full max-w-xl">
+            <ConsultationForm preselectedLoan={selectedLoan} />
+          </div>
+        </Modal>
+      )}
     </section>
   );
 }
