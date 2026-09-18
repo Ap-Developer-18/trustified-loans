@@ -43,8 +43,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               className="flex items-center gap-1"
             >
               <Image width={40} height={40} src={"/logo.svg"} alt="logo" />
-              <span className="font-serif text-2xl font-bold tracking-tight text-cyprus md:text-3xl">
-                Trustified Loans
+              <span className="font-serif leading-[100%] text-2xl font-bold tracking-tight text-cyprus">
+                Trustified <br/> Loans
               </span>
             </div>
 
