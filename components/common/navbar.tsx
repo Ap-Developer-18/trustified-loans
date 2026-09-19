@@ -52,21 +52,21 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 pt-2 md:pt-3">
-      <Container size="wide">
-        <motion.div
-          animate={{
-            backgroundColor: scrolled
-              ? "rgba(245, 241, 232, 0.88)"
-              : "rgba(245, 241, 232, 0)",
-            backdropFilter: scrolled ? "blur(12px)" : "blur(0px)",
-            boxShadow: scrolled
-              ? "0 4px 20px -2px rgba(0, 0, 0, 0.05)"
-              : "0 0 0 rgba(0, 0, 0, 0)",
-          }}
-          transition={{ duration: 0.25, ease: "easeInOut" }}
-          className="rounded-3xl px-4 transition-all md:px-6"
-        >
+    <header className="fixed inset-x-0 top-0 z-50">
+      <motion.div
+        animate={{
+          backgroundColor: scrolled
+            ? "rgba(245, 241, 232, 0.88)"
+            : "rgba(245, 241, 232, 0)",
+          backdropFilter: scrolled ? "blur(12px)" : "blur(0px)",
+          boxShadow: scrolled
+            ? "0 4px 20px -2px rgba(0, 0, 0, 0.05)"
+            : "0 0 0 rgba(0, 0, 0, 0)",
+        }}
+        transition={{ duration: 0.25, ease: "easeInOut" }}
+        className="transition-all"
+      >
+        <Container size="wide">
           <div className="flex items-center justify-between py-3 md:py-3.5">
             {/* Logo */}
             <Link
@@ -168,8 +168,8 @@ export default function Navbar() {
               </motion.div>
             )}
           </AnimatePresence>
-        </motion.div>
-      </Container>
+        </Container>
+      </motion.div>
     </header>
   );
 }

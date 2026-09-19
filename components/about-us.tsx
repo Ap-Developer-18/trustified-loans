@@ -27,7 +27,6 @@ export default function AboutUs() {
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight leading-tight mb-2 text-cyprus">
             About Trustified Loans
           </h2>
-
           <p className="text-base md:text-lg font-medium leading-relaxed text-muted">
             We make finding and understanding the right loan simple. Our team is
             here to guide you from your first enquiry to the loan process.
@@ -35,25 +34,30 @@ export default function AboutUs() {
         </motion.div>
 
         {/* Bento Layout */}
-        <div
-          className="grid grid-cols-1 gap-3 sm:gap-4 pb-2 lg:grid-cols-4 lg:items-stretch"
-        >
+        <div className="grid grid-cols-1 gap-3 sm:gap-4 pb-2 lg:grid-cols-4 lg:items-stretch">
           {/* Large Image - Mobile par compact height, desktop par bento span */}
           <motion.div
             {...cardAnimation}
             transition={{ duration: 0.55, ease: "easeOut" }}
             className="group relative aspect-4/3 lg:aspect-auto overflow-hidden
             rounded-[20px] bg-surface p-1 shadow-sm ring-1 ring-cyprus/5
-            lg:col-span-1 lg:row-span-2 lg:min-h-[500px] lg:rounded-[24px]"
+            lg:col-span-1 lg:row-span-2 lg:rounded-3xl"
           >
-            {/* OPTIMIZATION: Next.js Image with strict sizes replaces native img */}
             <Image
               src="/about-us-one.webp"
               alt="Trustified Loans consultation"
               fill
               sizes="(max-width: 1024px) 100vw, 25vw"
-              className="rounded-[16px] max-lg:object-top object-cover
-              transition-transform duration-700 group-hover:scale-[1.03] lg:rounded-[20px]"
+              className="rounded-2xl object-top object-cover
+              transition-transform max-lg:hidden duration-700 group-hover:scale-[1.03] lg:rounded-[20px]"
+            />
+            <Image
+              src="/about-us-two.webp"
+              alt="Trustified Loans consultation"
+              fill
+              sizes="(max-width: 1024px) 100vw, 25vw"
+              className="rounded-2xl object-top object-cover
+              transition-transform lg:hidden duration-700 group-hover:scale-[1.03] lg:rounded-[20px]"
             />
 
             {/* Image Overlay */}
@@ -98,7 +102,7 @@ export default function AboutUs() {
           <motion.div
             {...cardAnimation}
             transition={{ duration: 0.5, delay: 0.15, ease: "easeOut" }}
-            className="group relative min-h-[180px] overflow-hidden
+            className="group relative max-lg:hidden min-h-[180px] overflow-hidden
             rounded-[20px] bg-surface p-1 shadow-sm ring-1 ring-cyprus/5
             sm:min-h-[240px] sm:rounded-[24px] lg:col-span-1"
           >
@@ -163,7 +167,8 @@ export default function AboutUs() {
 
                 <p className="mt-2 max-w-2xl font-medium leading-5 text-muted sm:mt-3 sm:leading-6">
                   We explain the loan process, requirements and available
-                  options clearly, so you can make your decision with confidence.
+                  options clearly, so you can make your decision with
+                  confidence.
                 </p>
               </div>
             </div>
@@ -173,23 +178,23 @@ export default function AboutUs() {
           <motion.div
             {...cardAnimation}
             transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" }}
-            className="rounded-[20px] bg-cyprus p-6 shadow-sm
+            className="rounded-[20px] bg-white lg:bg-cyprus p-6 shadow-sm
             transition-all duration-300 hover:-translate-y-1 hover:shadow-md
             sm:rounded-[24px] lg:col-span-1"
           >
             <div
               className="mb-3 flex h-8 w-8 items-center justify-center
-              rounded-lg bg-white/10 text-xs font-bold text-white
+              rounded-lg bg-cyprus/10 lg:bg-white/10 text-xs font-bold text-primary lg:text-white
               sm:mb-5 sm:h-10 sm:w-10 sm:rounded-2xl sm:text-sm"
             >
               04
             </div>
 
-            <h3 className="font-serif text-lg font-bold leading-tight text-white sm:text-2xl">
+            <h3 className="font-serif text-lg font-bold leading-tight text-primary lg:text-white sm:text-2xl">
               Support at Every Step
             </h3>
 
-            <p className="mt-2 font-medium leading-5 text-white/75 sm:mt-3 sm:leading-6">
+            <p className="mt-2 font-medium leading-5 text-primary/75 lg:text-white/75 sm:mt-3 sm:leading-6">
               From your first enquiry to the loan process, our team is here to
               guide and support you.
             </p>

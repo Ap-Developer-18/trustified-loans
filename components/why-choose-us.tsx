@@ -18,7 +18,7 @@ export default function WhyChooseUs() {
 
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-16 lg:items-stretch">
           {/* LEFT: Info list, center-aligned before lg, left-aligned on lg+ */}
-          <div className="flex flex-col justify-between">
+          <div className="flex flex-col lg:py-4 justify-between">
             {whyChooseUsBenefits.map((item, index) => (
               <motion.div
                 key={item.number}
@@ -30,7 +30,7 @@ export default function WhyChooseUs() {
                   duration: 0.5,
                   ease: "easeOut",
                 }}
-                className="group flex flex-col items-center text-center border-b border-primary/10 py-6 first:pt-0 last:border-b-0 last:pb-0 lg:flex-row lg:items-start lg:text-left lg:gap-5"
+                className="group flex flex-col items-center text-center border-b border-primary/10 py-4 first:pt-0 last:border-b-0 last:pb-0 lg:flex-row lg:items-start lg:text-left lg:gap-5"
               >
                 <div className="mb-3 flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-primary/15 font-serif text-base font-bold text-primary transition-colors duration-300 group-hover:border-primary group-hover:bg-primary group-hover:text-white lg:mb-0">
                   {item.number}
@@ -54,17 +54,17 @@ export default function WhyChooseUs() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="relative h-full min-h-[420px] lg:sticky lg:top-24 lg:self-start"
+            className="relative h-full lg:sticky lg:top-24 lg:self-start"
           >
-            <div className="relative h-full min-h-[420px] w-full overflow-hidden rounded-3xl shadow-lg shadow-primary/10">
+            <div className="relative h-full aspect-4/3 w-full overflow-hidden rounded-3xl shadow-lg shadow-primary/10">
               <Image
                 src="/why-us.webp"
                 alt="Trustified Loans expert guiding a customer"
                 fill
-                className="object-cover"
+                className="object-cover h-full"
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/40 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-linear-to-t from-primary/40 via-transparent to-transparent" />
             </div>
           </motion.div>
         </div>

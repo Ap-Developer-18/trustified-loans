@@ -30,7 +30,7 @@ export default function Footer() {
 
   return (
     <footer className="bg-background text-cyprus pt-20 sm:pt-24 pb-6 lg:pb-12 relative z-30 overflow-hidden">
-      <Container>
+      <Container className="">
         <div className="grid grid-cols-2 md:grid-cols-12 gap-8 lg:gap-6 mb-16">
           <div className="col-span-2 md:col-span-12 lg:col-span-5 space-y-5">
             <Link href="/" className="flex items-center gap-1">

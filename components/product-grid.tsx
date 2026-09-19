@@ -8,10 +8,7 @@ import { loanProducts } from "@/data/loan-products";
 
 export default function ProductGrid() {
   return (
-    <section
-      id="loans"
-      className="relative scroll-mt-6 overflow-hidden bg-background pt-20 sm:pt-24"
-    >
+    <section id="loans" className="relative scroll-mt-6 pt-20 sm:pt-24">
       <Container>
         <SectionHeading
           title="Loans for Every Need"
@@ -20,7 +17,7 @@ export default function ProductGrid() {
           theme="light"
         />
         {/* Grid — 4 per row, last incomplete row auto-centers */}
-        <div className="flex flex-wrap justify-center gap-6">
+        <div className="flex flex-wrap justify-center gap-4 lg:gap-6">
           {loanProducts.map((product, index) => (
             <div
               key={product.title}

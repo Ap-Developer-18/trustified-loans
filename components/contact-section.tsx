@@ -27,8 +27,8 @@ export default function ContactSection() {
           {/* Right Column — Dark Info Card */}
           <div className="lg:col-span-5">
             <div
-              className="relative flex h-full min-h-[520px] flex-col overflow-hidden rounded-[2.5rem]
-              bg-cyprus p-8 sm:p-10"
+              className="relative flex h-full min-h-[520px] flex-col overflow-hidden rounded-3xl
+              bg-cyprus p-6 sm:p-10"
             >
               {/* Animated smoky background */}
               <div className="pointer-events-none absolute inset-0 opacity-60">
