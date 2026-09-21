@@ -1,11 +1,13 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import Container from "./common/container";
 import Button from "./common/button";
 
+// 1. DYNAMIC IMPORTS: Lazy load the modal and form to slash initial JS payload
 const Modal = dynamic(() => import("@/components/common/modal"), {
   ssr: false,
 });
@@ -42,27 +44,28 @@ export default function Hero() {
     <section
       id="hero"
       aria-labelledby="hero-heading"
+      // 🚀 SAFARI FIX: Removes the grey tap highlight on iOS for a native app feel
       className="relative overflow-hidden bg-background pt-28 sm:pt-32 md:pt-36 [-webkit-tap-highlight-color:transparent]"
     >
       <div className="pointer-events-none absolute left-1/2 top-[24%] h-105 w-190 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyprus/5 blur-[140px]" />
 
       <Container>
-        {/* 🚀 LCP FIX: Replaced framer-motion with CSS animations.
-            framer-motion mounting/animating this block was blocking the
-            main thread during hydration, delaying paint of the hero image
-            (Element render delay was 1200ms). CSS animations run on the
-            compositor thread and don't block hydration. */}
-        <div
-          className="hero-fade-up relative z-10 mx-auto mb-8 max-w-5xl px-1 text-center sm:mb-12 sm:px-0"
-          style={{ animationDelay: "0s" }}
+        <motion.div
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.65, ease: "easeOut" }}
+          className="relative z-10 mx-auto mb-8 max-w-5xl px-1 text-center sm:mb-12 sm:px-0"
         >
-          <div
-            className="hero-fade-up mb-4 inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.14em] text-cyprus sm:mb-5 sm:text-xs md:text-xs"
-            style={{ animationDelay: "0.05s" }}
+          <motion.div
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.05, ease: "easeOut" }}
+            className="mb-4 inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.14em] text-cyprus sm:mb-5 sm:text-xs md:text-xs"
           >
             Simple. Fast. Trusted.
-          </div>
+          </motion.div>
 
+          {/* ♿ ACCESSIBILITY: Linked to the section for semantic SEO */}
           <h1
             id="hero-heading"
             className="font-serif text-[2.35rem] font-bold leading-[1.08] tracking-tight text-cyprus sm:text-5xl md:text-6xl lg:text-[72px]"
@@ -77,9 +80,11 @@ export default function Hero() {
             find the right loan with simple guidance and a hassle-free process.
           </p>
 
-          <div
-            className="hero-fade-up mt-6 flex flex-col items-center justify-center gap-3 sm:mt-8 sm:flex-row"
-            style={{ animationDelay: "0.2s" }}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
+            className="mt-6 flex flex-col items-center justify-center gap-3 sm:mt-8 sm:flex-row"
           >
             <Button
               onClick={() => {
@@ -93,16 +98,19 @@ export default function Hero() {
             <Button variant="light" onClick={handleWhatsAppClick}>
               Talk to an Expert
             </Button>
-          </div>
+          </motion.div>
 
-          <p
-            className="hero-fade-in mx-auto mt-4 max-w-75 text-[11px] font-medium leading-5 text-muted/80 sm:max-w-none sm:text-xs"
-            style={{ animationDelay: "0.35s" }}
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.35 }}
+            className="mx-auto mt-4 max-w-75 text-[11px] font-medium leading-5 text-muted/80 sm:max-w-none sm:text-xs"
           >
             Get guidance on the loan option that suits your needs.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
+        {/* 🚀 LCP FIX: Removed motion.div. Animations on the LCP element block the main thread and destroy PageSpeed scores. */}
         <div className="relative mx-auto -mb-2 flex w-full max-w-6xl justify-center px-0 sm:px-4">
           <div className="relative w-full aspect-4/3 sm:aspect-16/10">
             <Image
@@ -119,6 +127,7 @@ export default function Hero() {
         </div>
       </Container>
 
+      {/* 3. CONDITIONAL RENDERING: Don't pollute the DOM until the user clicks */}
       {isConsultationOpen && (
         <Modal
           open={isConsultationOpen}
