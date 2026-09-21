@@ -110,25 +110,21 @@ export default function Hero() {
           </motion.p>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, scale: 0.97, y: 24 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 0.75, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-          className="relative mx-auto -mb-2 flex w-full max-w-6xl justify-center px-0 sm:px-4"
-        >
+        {/* 🚀 LCP FIX: Removed motion.div. Animations on the LCP element block the main thread and destroy PageSpeed scores. */}
+        <div className="relative mx-auto -mb-2 flex w-full max-w-6xl justify-center px-0 sm:px-4">
           <div className="relative w-full aspect-4/3 sm:aspect-16/10">
-            {/* 2. IMAGE OPTIMIZATION: Added fetchPriority and fine-tuned sizes */}
+            {/* 🚀 IMAGE SIZING FIX: Updated mobile sizes from 100vw to 70vw to prevent downloading oversized images */}
             <Image
               src="/hero-img.webp"
               fill
               priority
               fetchPriority="high"
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1024px"
+              sizes="(max-width: 640px) 70vw, (max-width: 1024px) 90vw, 1024px"
               alt="Trustified Loans - Loan consultation"
               className="object-contain drop-shadow-sm"
             />
           </div>
-        </motion.div>
+        </div>
       </Container>
 
       {/* 3. CONDITIONAL RENDERING: Don't pollute the DOM until the user clicks */}

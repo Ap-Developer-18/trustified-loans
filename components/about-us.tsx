@@ -52,7 +52,8 @@ export default function AboutUs() {
               alt="Professional guidance for loan consultation"
               fill
               loading="lazy"
-              sizes="(max-width: 1024px) 100vw, 25vw"
+              // 🚀 LCP FIX: Adjusted sizes to prevent downloading 100vw images on mobile
+              sizes="(max-width: 640px) 90vw, (max-width: 1024px) 50vw, 25vw"
               className="rounded-2xl object-top object-cover
               transition-transform max-lg:hidden duration-700 group-hover:scale-[1.03] lg:rounded-[20px]"
             />
@@ -61,7 +62,8 @@ export default function AboutUs() {
               alt="Client discussing loan options with our team"
               fill
               loading="lazy"
-              sizes="(max-width: 1024px) 100vw, 25vw"
+              // 🚀 LCP FIX: Accurate viewport sizing
+              sizes="(max-width: 640px) 90vw, (max-width: 1024px) 50vw, 25vw"
               className="rounded-2xl object-top object-cover
               transition-transform lg:hidden duration-700 group-hover:scale-[1.03] lg:rounded-[20px]"
             />
@@ -110,7 +112,8 @@ export default function AboutUs() {
               alt="Business and financial growth"
               fill
               loading="lazy"
-              sizes="(max-width: 1024px) 100vw, 25vw"
+              // 🚀 LCP FIX: Reduced sizes prop for smaller grid items
+              sizes="(max-width: 640px) 50vw, 25vw"
               className="rounded-2xl object-cover transition-transform duration-700
               group-hover:scale-[1.03] lg:rounded-[20px]"
             />
