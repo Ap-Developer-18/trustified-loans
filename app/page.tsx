@@ -10,13 +10,11 @@ export default function Page() {
   return (
     <>
       <Navbar />
-      <main id="main-content">
-        <Hero />
-        <AboutUs />
-        <ProductGrid />
-        <WhyChooseUs />
-        <ContactSection />
-      </main>
+      <Hero />
+      <AboutUs />
+      <ProductGrid />
+      <WhyChooseUs />
+      <ContactSection />
       <Footer />
     </>
   );
