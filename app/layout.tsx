@@ -59,6 +59,7 @@ export const metadata: Metadata = {
   },
 };
 
+// app/layout.tsx
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -70,6 +71,14 @@ export default function RootLayout({
       dir="ltr"
       className={`${gabarito.variable} ${judson.variable}`}
     >
+      <head>
+        <link
+          rel="preload"
+          as="image"
+          href="/hero-img.webp"
+          fetchPriority="high"
+        />
+      </head>
       <body className="font-sans bg-background text-foreground antialiased">
         <main className="min-h-screen flex flex-col">{children}</main>
       </body>
