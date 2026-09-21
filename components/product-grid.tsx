@@ -1,4 +1,3 @@
-// components/home/product-grid.tsx
 "use client";
 
 import Container from "./common/container";
@@ -8,7 +7,11 @@ import { loanProducts } from "@/data/loan-products";
 
 export default function ProductGrid() {
   return (
-    <section id="loans" className="relative scroll-mt-6 pt-20 sm:pt-24">
+    <section
+      id="loans"
+      aria-label="Our Loan Products"
+      className="relative scroll-mt-6 pt-20 sm:pt-24 [-webkit-tap-highlight-color:transparent]"
+    >
       <Container>
         <SectionHeading
           title="Loans for Every Need"
@@ -16,17 +19,20 @@ export default function ProductGrid() {
           align="center"
           theme="light"
         />
-        {/* Grid — 4 per row, last incomplete row auto-centers */}
-        <div className="flex flex-wrap justify-center gap-4 lg:gap-6">
+
+        <ul
+          role="list"
+          className="flex flex-wrap justify-center gap-4 lg:gap-6 m-0 p-0 list-none"
+        >
           {loanProducts.map((product, index) => (
-            <div
+            <li
               key={product.title}
               className="w-full sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)]"
             >
               <LoanProductCard product={product} index={index} />
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
       </Container>
     </section>
   );

@@ -105,8 +105,12 @@ function CustomDropdown({
     <div ref={wrapperRef} className="relative w-full h-auto self-start">
       <button
         type="button"
+        // ♿ ACCESSIBILITY: Screen readers ko batane ke liye ki ye dropdown hai
+        aria-haspopup="listbox"
+        aria-expanded={open}
         onClick={() => setOpen((p) => !p)}
-        className={`w-full flex items-center justify-between bg-black/3 border rounded-2xl px-5 h-13 sm:h-14 text-sm transition-colors focus:outline-none hover:bg-black/5 ${
+        // 🚀 iOS FIX: Changed text-sm to text-[16px] sm:text-sm to match inputs and prevent any mobile zoom mismatch
+        className={`w-full flex items-center justify-between bg-black/3 border rounded-2xl px-5 h-13 sm:h-14 text-[16px] sm:text-sm transition-colors focus:outline-none hover:bg-black/5 ${
           error
             ? "border-red-500/60"
             : open
@@ -149,11 +153,16 @@ function CustomDropdown({
             transition={{ duration: 0.15 }}
             className="absolute left-0 right-0 mt-2 rounded-2xl border border-border bg-surface shadow-2xl z-50 overflow-hidden flex flex-col"
           >
-            <div className="max-h-48 overflow-y-auto overscroll-contain touch-pan-y">
+            <div
+              role="listbox"
+              className="max-h-48 overflow-y-auto overscroll-contain touch-pan-y"
+            >
               {options.map((opt) => (
                 <button
                   key={opt.value}
                   type="button"
+                  role="option"
+                  aria-selected={value === opt.value}
                   onClick={() => {
                     onChange(opt.value);
                     setOpen(false);
@@ -236,7 +245,6 @@ export default function ConsultationForm({
     setIsSubmitting(true);
 
     try {
-      // API INTEGRATION: Sending data to our route
       const res = await fetch("/api/consultation", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -266,7 +274,6 @@ export default function ConsultationForm({
       if (submitError) setSubmitError("");
     };
 
-  // Only allow numbers in phone input
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const onlyNumbers = e.target.value.replace(/\D/g, "");
     setForm((p) => ({ ...p, phone: onlyNumbers }));
@@ -319,11 +326,14 @@ export default function ConsultationForm({
             <input
               id="full-name"
               type="text"
+              name="name"
+              autoComplete="name" // ♿ ACCESSIBILITY: PageSpeed requirement for forms
               disabled={isSubmitting}
               value={form.fullName}
               onChange={setField("fullName")}
               placeholder="e.g., Daksh Rawat"
-              className={`h-13 sm:h-14 w-full rounded-2xl bg-black/3 px-5 text-sm font-medium text-cyprus outline-none transition-all duration-300 placeholder:text-muted/40 hover:bg-black/5 focus:bg-white focus:ring-2 focus:ring-cyprus/20 border ${errors.fullName ? "border-red-500" : "border-transparent focus:border-cyprus"}`}
+              // 🚀 iOS FIX: 'text-[16px] sm:text-sm' lagaya. Mobile pe exactly 16px rahega toh iOS auto-zoom nahi karega. Desktop pe wapas 14px ho jayega.
+              className={`h-13 sm:h-14 w-full rounded-2xl bg-black/3 px-5 text-[16px] sm:text-sm font-medium text-cyprus outline-none transition-all duration-300 placeholder:text-muted/40 hover:bg-black/5 focus:bg-white focus:ring-2 focus:ring-cyprus/20 border ${errors.fullName ? "border-red-500" : "border-transparent focus:border-cyprus"}`}
             />
             {errors.fullName && (
               <p className="mt-1.5 text-xs text-red-500">{errors.fullName}</p>
@@ -381,19 +391,22 @@ export default function ConsultationForm({
             <div
               className={`flex h-13 sm:h-14 overflow-hidden rounded-2xl bg-black/3 border transition-all duration-300 focus-within:bg-white focus-within:ring-2 focus-within:ring-cyprus/20 hover:bg-black/5 ${errors.phone ? "border-red-500" : "border-transparent focus-within:border-cyprus"}`}
             >
-              <span className="flex items-center px-5 text-sm font-bold text-cyprus/60 bg-black/2 border-r border-black/5">
+              <span className="flex items-center px-5 text-[16px] sm:text-sm font-bold text-cyprus/60 bg-black/2 border-r border-black/5">
                 +91
               </span>
               <input
                 id="phone"
                 type="tel"
+                name="tel"
+                autoComplete="tel" // ♿ ACCESSIBILITY requirement
                 disabled={isSubmitting}
                 inputMode="numeric"
                 maxLength={10}
                 value={form.phone}
                 onChange={handlePhoneChange}
                 placeholder="98765 43210"
-                className="min-w-0 flex-1 bg-transparent px-4 text-sm font-medium text-cyprus outline-none placeholder:text-muted/40"
+                // 🚀 iOS FIX applied here as well
+                className="min-w-0 flex-1 bg-transparent px-4 text-[16px] sm:text-sm font-medium text-cyprus outline-none placeholder:text-muted/40"
               />
             </div>
             {errors.phone && (

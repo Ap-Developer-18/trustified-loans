@@ -53,18 +53,18 @@ export default function Navbar() {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50">
-      <motion.div
-        animate={{
-          backgroundColor: scrolled
-            ? "rgba(245, 241, 232, 0.88)"
-            : "rgba(245, 241, 232, 0)",
-          backdropFilter: scrolled ? "blur(12px)" : "blur(0px)",
-          boxShadow: scrolled
-            ? "0 4px 20px -2px rgba(0, 0, 0, 0.05)"
-            : "0 0 0 rgba(0, 0, 0, 0)",
-        }}
-        transition={{ duration: 0.25, ease: "easeInOut" }}
-        className="transition-all"
+      {/* 
+        🚀 PERFORMANCE FIX (PageSpeed Insights): 
+        Removed Framer Motion for box-shadow/backdrop-filter. 
+        Native CSS transitions are composited by the GPU, fixing the CLS/Animation warning.
+        UI values are EXACTLY the same.
+      */}
+      <div
+        className={`transition-all duration-300 ease-in-out ${
+          scrolled
+            ? "bg-[rgba(245,241,232,0.88)] backdrop-blur-md shadow-[0_4px_20px_-2px_rgba(0,0,0,0.05)]"
+            : "bg-transparent backdrop-blur-none shadow-none"
+        }`}
       >
         <Container size="wide">
           <div className="flex items-center justify-between py-3 md:py-3.5">
@@ -73,8 +73,16 @@ export default function Navbar() {
               href="/"
               onClick={closeMenu}
               className="flex items-center gap-1"
+              aria-label="Trustified Loans Home"
             >
-              <Image width={40} height={40} src={"/logo.svg"} alt="logo" />
+              {/* 🚀 LCP & ACCESSIBILITY: priority added for instant load, and descriptive alt text */}
+              <Image
+                width={40}
+                height={40}
+                src="/logo.svg"
+                alt="Trustified Loans Logo"
+                priority
+              />
               <span className="font-serif text-2xl font-bold tracking-tight text-cyprus md:text-3xl">
                 Trustified Loans
               </span>
@@ -169,7 +177,7 @@ export default function Navbar() {
             )}
           </AnimatePresence>
         </Container>
-      </motion.div>
+      </div>
     </header>
   );
 }

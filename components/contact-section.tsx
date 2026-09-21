@@ -4,11 +4,61 @@ import Container from "./common/container";
 import ConsultationForm from "./consultation-form";
 import SectionHeading from "./common/section-heading";
 
+const CONTACT_DETAILS = [
+  {
+    id: "office",
+    icon: MapPin,
+    label: "Office Location",
+    value: "Malerna, Near PNB, Delhi Mumbai Expressway, Sector 142, Faridabad",
+    valueClass: "mt-0.5 font-medium leading-5 text-sand/90",
+    wrapperClass: "flex items-center gap-4 py-4 first:pt-0",
+    iconWrapperClass:
+      "flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white/10 text-sand",
+    href: null,
+  },
+  {
+    id: "phone",
+    icon: Phone,
+    label: "Direct Phone Line",
+    value: "+91 99905 33555",
+    valueClass: "mt-0.5 text-base font-bold text-sand",
+    wrapperClass: "group flex items-center gap-4 py-4",
+    iconWrapperClass:
+      "flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white/10 text-sand transition-colors duration-300 group-hover:bg-sand group-hover:text-cyprus",
+    href: "tel:+919990533555",
+    showArrow: true,
+  },
+  {
+    id: "email",
+    icon: Mail,
+    label: "Email Support",
+    value: "support@trustifiedloans.com",
+    valueClass: "mt-0.5 truncate text-base font-bold text-sand",
+    wrapperClass: "group flex items-center gap-4 py-4",
+    iconWrapperClass:
+      "flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white/10 text-sand transition-colors duration-300 group-hover:bg-sand group-hover:text-cyprus",
+    href: "mailto:support@trustifiedloans.com",
+    showArrow: true,
+  },
+  {
+    id: "hours",
+    icon: Clock,
+    label: "Working Hours",
+    value: "Mon – Sat · 9:00 AM – 7:00 PM",
+    valueClass: "mt-0.5 text-base font-bold text-sand",
+    wrapperClass: "flex items-center gap-4 py-4 last:pb-0",
+    iconWrapperClass:
+      "flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white/10 text-sand",
+    href: null,
+  },
+];
+
 export default function ContactSection() {
   return (
     <section
-      className="relative scroll-mt-6 overflow-hidden bg-background pt-20 sm:pt-24"
       id="contact"
+      aria-label="Contact Us"
+      className="relative scroll-mt-6 overflow-hidden bg-background pt-20 sm:pt-24 [-webkit-tap-highlight-color:transparent]"
     >
       <Container>
         <SectionHeading
@@ -27,18 +77,24 @@ export default function ContactSection() {
           {/* Right Column — Dark Info Card */}
           <div className="lg:col-span-5">
             <div
-              className="relative flex h-full min-h-[520px] flex-col overflow-hidden rounded-3xl
+              className="relative flex h-full min-h-130 flex-col overflow-hidden rounded-3xl
               bg-cyprus p-6 sm:p-10"
             >
-              {/* Animated smoky background */}
-              <div className="pointer-events-none absolute inset-0 opacity-60">
-                <div className="absolute -top-1/4 left-1/4 h-[140%] w-[140%] animate-[spin_25s_linear_infinite] rounded-full bg-[radial-gradient(ellipse_at_center,_rgba(255,255,255,0.10)_0%,_transparent_60%)] blur-2xl" />
-                <div className="absolute -bottom-1/3 -right-1/4 h-[120%] w-[120%] animate-[spin_35s_linear_infinite_reverse] rounded-full bg-[radial-gradient(ellipse_at_center,_rgba(220,190,140,0.12)_0%,_transparent_60%)] blur-2xl" />
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_rgba(255,255,255,0.06),_transparent_50%)]" />
+              {/* Animated smoky background - Hidden from screen readers */}
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 opacity-60"
+              >
+                <div className="absolute -top-1/4 left-1/4 h-[140%] w-[140%] animate-[spin_25s_linear_infinite] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.10)_0%,transparent_60%)] blur-2xl" />
+                <div className="absolute -bottom-1/3 -right-1/4 h-[120%] w-[120%] animate-[spin_35s_linear_infinite_reverse] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(220,190,140,0.12)_0%,transparent_60%)] blur-2xl" />
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(255,255,255,0.06),transparent_50%)]" />
               </div>
 
               {/* Noise/gradient overlay for depth */}
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/30" />
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 bg-linear-to-b from-transparent via-transparent to-black/30"
+              />
 
               <div className="relative flex h-full flex-col">
                 {/* Heading */}
@@ -52,76 +108,41 @@ export default function ContactSection() {
                 </div>
 
                 {/* Contact Info List */}
-                <div className="mt-10 space-y-0 divide-y divide-white/10">
-                  {/* Office */}
-                  <div className="flex items-center gap-4 py-4 first:pt-0">
-                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white/10 text-sand">
-                      <MapPin className="h-[18px] w-[18px]" />
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <p className="text-sm font-semibold uppercase tracking-[0.1em] text-sand/50">
-                        Office Location
-                      </p>
-                      <p className="mt-0.5 font-medium leading-5 text-sand/90">
-                        Malerna, Near PNB, Delhi Mumbai Expressway, Sector 142,
-                        Faridabad
-                      </p>
-                    </div>
-                  </div>
+                <ul
+                  role="list"
+                  className="mt-10 space-y-0 divide-y divide-white/10 m-0 p-0 list-none"
+                >
+                  {CONTACT_DETAILS.map((item) => {
+                    const Icon = item.icon;
+                    const Wrapper = item.href ? "a" : "div";
+                    const wrapperProps = item.href
+                      ? { href: item.href, className: item.wrapperClass }
+                      : { className: item.wrapperClass };
 
-                  {/* Phone */}
-                  <a
-                    href="tel:+919990533555"
-                    className="group flex items-center gap-4 py-4"
-                  >
-                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white/10 text-sand transition-colors duration-300 group-hover:bg-sand group-hover:text-cyprus">
-                      <Phone className="h-[18px] w-[18px]" />
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <p className="text-sm font-semibold uppercase tracking-[0.1em] text-sand/50">
-                        Direct Phone Line
-                      </p>
-                      <p className="mt-0.5 text-base font-bold text-sand">
-                        +91 99905 33555
-                      </p>
-                    </div>
-                    <ArrowUpRight className="h-4 w-4 shrink-0 text-sand/40 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:text-sand" />
-                  </a>
-
-                  {/* Email */}
-                  <a
-                    href="mailto:support@trustifiedloans.com"
-                    className="group flex items-center gap-4 py-4"
-                  >
-                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white/10 text-sand transition-colors duration-300 group-hover:bg-sand group-hover:text-cyprus">
-                      <Mail className="h-[18px] w-[18px]" />
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <p className="text-sm font-semibold uppercase tracking-[0.1em] text-sand/50">
-                        Email Support
-                      </p>
-                      <p className="mt-0.5 truncate text-base font-bold text-sand">
-                        support@trustifiedloans.com
-                      </p>
-                    </div>
-                    <ArrowUpRight className="h-4 w-4 shrink-0 text-sand/40 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:text-sand" />
-                  </a>
-
-                  {/* Hours */}
-                  <div className="flex items-center gap-4 py-4 last:pb-0">
-                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white/10 text-sand">
-                      <Clock className="h-[18px] w-[18px]" />
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <p className="text-sm font-semibold uppercase tracking-[0.1em] text-sand/50">
-                        Working Hours
-                      </p>
-                      <p className="mt-0.5 text-base font-bold text-sand">
-                        Mon – Sat · 9:00 AM – 7:00 PM
-                      </p>
-                    </div>
-                  </div>
-                </div>
+                    return (
+                      <li key={item.id}>
+                        {/* @ts-ignore */}
+                        <Wrapper {...wrapperProps}>
+                          <div className={item.iconWrapperClass}>
+                            <Icon className="h-4.5 w-4.5" aria-hidden="true" />
+                          </div>
+                          <div className="min-w-0 flex-1">
+                            <p className="text-sm font-semibold uppercase tracking-widest text-sand/50">
+                              {item.label}
+                            </p>
+                            <p className={item.valueClass}>{item.value}</p>
+                          </div>
+                          {item.showArrow && (
+                            <ArrowUpRight
+                              aria-hidden="true"
+                              className="h-4 w-4 shrink-0 text-sand/40 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:text-sand"
+                            />
+                          )}
+                        </Wrapper>
+                      </li>
+                    );
+                  })}
+                </ul>
               </div>
             </div>
           </div>

@@ -8,11 +8,16 @@ import Container from "./common/container";
 import Button from "./common/button";
 
 // 1. DYNAMIC IMPORTS: Lazy load the modal and form to slash initial JS payload
-const Modal = dynamic(() => import("@/components/common/modal"), { ssr: false });
-const ConsultationForm = dynamic(() => import("./consultation-form"), { ssr: false });
+const Modal = dynamic(() => import("@/components/common/modal"), {
+  ssr: false,
+});
+const ConsultationForm = dynamic(() => import("./consultation-form"), {
+  ssr: false,
+});
 
 const WHATSAPP_NUMBER = "919990533555";
-const WHATSAPP_MESSAGE = "Hi, I'd like to talk to an expert about loan options.";
+const WHATSAPP_MESSAGE =
+  "Hi, I'd like to talk to an expert about loan options.";
 
 export default function Hero() {
   const [isConsultationOpen, setIsConsultationOpen] = useState(false);
@@ -26,7 +31,8 @@ export default function Hero() {
     };
 
     window.addEventListener("select-loan-type", handleSelectLoan);
-    return () => window.removeEventListener("select-loan-type", handleSelectLoan);
+    return () =>
+      window.removeEventListener("select-loan-type", handleSelectLoan);
   }, []);
 
   const handleWhatsAppClick = () => {
@@ -37,7 +43,9 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative overflow-hidden bg-background pt-28 sm:pt-32 md:pt-36"
+      aria-labelledby="hero-heading"
+      // 🚀 SAFARI FIX: Removes the grey tap highlight on iOS for a native app feel
+      className="relative overflow-hidden bg-background pt-28 sm:pt-32 md:pt-36 [-webkit-tap-highlight-color:transparent]"
     >
       <div className="pointer-events-none absolute left-1/2 top-[24%] h-105 w-190 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyprus/5 blur-[140px]" />
 
@@ -57,7 +65,11 @@ export default function Hero() {
             Simple. Fast. Trusted.
           </motion.div>
 
-          <h1 className="font-serif text-[2.35rem] font-bold leading-[1.08] tracking-tight text-cyprus sm:text-5xl md:text-6xl lg:text-[72px]">
+          {/* ♿ ACCESSIBILITY: Linked to the section for semantic SEO */}
+          <h1
+            id="hero-heading"
+            className="font-serif text-[2.35rem] font-bold leading-[1.08] tracking-tight text-cyprus sm:text-5xl md:text-6xl lg:text-[72px]"
+          >
             Find the Right Loan
             <br className="hidden sm:block" />
             <span className="text-cyprus/90">For Your Needs.</span>

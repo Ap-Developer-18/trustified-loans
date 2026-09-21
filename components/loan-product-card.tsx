@@ -8,7 +8,6 @@ type LoanProductCardProps = {
   index: number;
 };
 
-// 👇 Ek simple map jo Title ko form ki exact value mein badal dega
 const loanValueMap: Record<string, string> = {
   "Home Loan": "home-loan",
   "Personal Loan": "personal-loan",
@@ -27,8 +26,6 @@ export default function LoanProductCard({ product }: LoanProductCardProps) {
 
   const handleApply = (e: React.MouseEvent) => {
     e.preventDefault();
-
-    // Yahan se exact form wali value (e.g., "cash-credit") dispatch hogi
     const formValue = loanValueMap[product.title] || "";
 
     window.dispatchEvent(
@@ -37,15 +34,16 @@ export default function LoanProductCard({ product }: LoanProductCardProps) {
   };
 
   return (
-    <div
+    <article
       className="group flex h-full w-full flex-col justify-between
       rounded-3xl border border-white/20
       bg-[#003f38] p-5 sm:p-6
       shadow-2xl transition-all duration-300
-      select-none"
+      select-none [-webkit-tap-highlight-color:transparent]"
     >
       <div>
         <div
+          aria-hidden="true"
           className="mb-5 flex h-12 w-12 items-center justify-center
           rounded-xl border border-white/20
           bg-white/10 text-sand shadow-inner
@@ -63,18 +61,23 @@ export default function LoanProductCard({ product }: LoanProductCardProps) {
         </p>
       </div>
 
-      <div
+      <button
+        type="button"
         onClick={handleApply}
-        className="mt-6 flex items-center justify-between
-        border-t border-white/15 pt-5 cursor-pointer group/btn"
+        aria-label={`Apply for ${product.title}`}
+        className="mt-6 flex w-full items-center justify-between
+        border-t border-white/15 pt-5 cursor-pointer group/btn focus:outline-none text-left"
       >
         <span className="text-xs font-bold uppercase tracking-[0.14em] text-sand/90 transition-colors duration-200 group-hover/btn:text-white">
           Apply Now
         </span>
-        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/20 text-sand transition-all duration-300 group-hover/btn:bg-sand group-hover/btn:text-cyprus">
+        <div
+          aria-hidden="true"
+          className="flex h-10 w-10 items-center justify-center rounded-full bg-white/20 text-sand transition-all duration-300 group-hover/btn:bg-sand group-hover/btn:text-cyprus"
+        >
           <ArrowUpRight className="h-4 w-4" />
         </div>
-      </div>
-    </div>
+      </button>
+    </article>
   );
 }
