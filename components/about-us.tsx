@@ -1,7 +1,7 @@
 // components/home/about-us.tsx
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import Image from "next/image";
 import Container from "./common/container";
 
@@ -20,7 +20,7 @@ export default function AboutUs() {
     >
       <Container>
         {/* Section Heading */}
-        <motion.div
+        <m.div
           {...cardAnimation}
           transition={{ duration: 0.5, ease: "easeOut" }}
           className="mx-auto mb-6 max-w-2xl px-2 text-center sm:mb-10 sm:px-0"
@@ -35,12 +35,12 @@ export default function AboutUs() {
             We make finding and understanding the right loan simple. Our team is
             here to guide you from your first enquiry to the loan process.
           </p>
-        </motion.div>
+        </m.div>
 
         {/* Bento Layout - RESTORED ORIGINAL EXACT DOM ORDER */}
         <div className="grid grid-cols-1 gap-3 sm:gap-4 pb-2 lg:grid-cols-4 lg:items-stretch">
           {/* 1. Large Image */}
-          <motion.div
+          <m.div
             {...cardAnimation}
             transition={{ duration: 0.55, ease: "easeOut" }}
             className="group relative aspect-4/3 lg:aspect-auto overflow-hidden
@@ -79,10 +79,10 @@ export default function AboutUs() {
                 Here to help you make the right choice.
               </p>
             </div>
-          </motion.div>
+          </m.div>
 
           {/* 2. Simple Loan Process */}
-          <motion.div
+          <m.div
             {...cardAnimation}
             transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
             className="rounded-[20px] bg-surface p-6 shadow-sm ring-1 ring-cyprus/5
@@ -99,10 +99,10 @@ export default function AboutUs() {
               We make the loan process easy to understand and help you with the
               right loan option and required documents.
             </p>
-          </motion.div>
+          </m.div>
 
           {/* 3. Second Image - Editor warnings fixed (min-h-45, min-h-60, rounded-2xl) */}
-          <motion.div
+          <m.div
             {...cardAnimation}
             transition={{ duration: 0.5, delay: 0.15, ease: "easeOut" }}
             className="group relative max-lg:hidden min-h-45 overflow-hidden
@@ -120,10 +120,10 @@ export default function AboutUs() {
               className="rounded-2xl object-cover transition-transform duration-700
               group-hover:scale-[1.03] lg:rounded-[20px]"
             />
-          </motion.div>
+          </m.div>
 
           {/* 4. Right Loan Options */}
-          <motion.div
+          <m.div
             {...cardAnimation}
             transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
             className="rounded-[20px] bg-surface p-6 shadow-sm ring-1 ring-cyprus/5
@@ -140,10 +140,10 @@ export default function AboutUs() {
               Whether you need a home, personal, business or property loan, we
               help you explore options based on your needs.
             </p>
-          </motion.div>
+          </m.div>
 
           {/* 5. Transparency */}
-          <motion.div
+          <m.div
             {...cardAnimation}
             transition={{ duration: 0.5, delay: 0.25, ease: "easeOut" }}
             className="rounded-[20px] bg-surface p-6 shadow-sm ring-1 ring-cyprus/5
@@ -165,10 +165,10 @@ export default function AboutUs() {
                 </p>
               </div>
             </div>
-          </motion.div>
+          </m.div>
 
           {/* 6. Support */}
-          <motion.div
+          <m.div
             {...cardAnimation}
             transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" }}
             className="rounded-[20px] bg-white lg:bg-cyprus p-6 shadow-sm
@@ -185,7 +185,7 @@ export default function AboutUs() {
               From your first enquiry to the loan process, our team is here to
               guide and support you.
             </p>
-          </motion.div>
+          </m.div>
         </div>
       </Container>
     </section>

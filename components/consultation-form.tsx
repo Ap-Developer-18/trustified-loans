@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { z } from "zod";
 import Button from "./common/button";
 
@@ -123,7 +123,7 @@ function CustomDropdown({
         >
           {selected ? selected.label : placeholder}
         </span>
-        <motion.svg
+        <m.svg
           animate={{ rotate: open ? 180 : 0 }}
           transition={{ duration: 0.2 }}
           width="16"
@@ -139,14 +139,14 @@ function CustomDropdown({
             strokeLinecap="round"
             strokeLinejoin="round"
           />
-        </motion.svg>
+        </m.svg>
       </button>
 
       {error && <p className="mt-1.5 text-xs text-red-500">{error}</p>}
 
       <AnimatePresence>
         {open && (
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 4 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 4 }}
@@ -194,7 +194,7 @@ function CustomDropdown({
                 </button>
               ))}
             </div>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
     </div>

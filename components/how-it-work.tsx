@@ -2,7 +2,7 @@
 
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { ShieldCheck, Sliders, Eye, Headphones } from "lucide-react";
 import Container from "./common/container";
 import SectionHeading from "./common/section-heading";
@@ -75,7 +75,7 @@ export default function WhyChooseUs() {
           {/* =========================
               01 — LEFT TALL CARD
           ========================== */}
-          <motion.div
+          <m.div
             {...cardAnimation}
             transition={{
               duration: 0.5,
@@ -163,12 +163,12 @@ export default function WhyChooseUs() {
                 group-hover:bg-cyprus/20
               "
             />
-          </motion.div>
+          </m.div>
 
           {/* =========================
               02 — TOP MIDDLE
           ========================== */}
-          <motion.div
+          <m.div
             {...cardAnimation}
             transition={{
               duration: 0.5,
@@ -243,12 +243,12 @@ export default function WhyChooseUs() {
                 group-hover:bg-cyprus/20
               "
             />
-          </motion.div>
+          </m.div>
 
           {/* =========================
               03 — BOTTOM WIDE CARD
           ========================== */}
-          <motion.div
+          <m.div
             {...cardAnimation}
             transition={{
               duration: 0.5,
@@ -332,12 +332,12 @@ export default function WhyChooseUs() {
                 group-hover:bg-cyprus/20
               "
             />
-          </motion.div>
+          </m.div>
 
           {/* =========================
               04 — RIGHT TALL CARD
           ========================== */}
-          <motion.div
+          <m.div
             {...cardAnimation}
             transition={{
               duration: 0.5,
@@ -427,7 +427,7 @@ export default function WhyChooseUs() {
                 group-hover:bg-white/30
               "
             />
-          </motion.div>
+          </m.div>
         </div>
       </Container>
     </section>

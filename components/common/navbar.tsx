@@ -4,7 +4,7 @@
 import { useState, useCallback } from "react";
 import Link from "next/link";
 import {
-  motion,
+  m,
   AnimatePresence,
   useScroll,
   useMotionValueEvent,
@@ -120,7 +120,7 @@ export default function Navbar() {
               aria-controls="mobile-menu"
             >
               <AnimatePresence mode="wait" initial={false}>
-                <motion.span
+                <m.span
                   key={menuOpen ? "close" : "open"}
                   initial={{ opacity: 0, rotate: -90 }}
                   animate={{ opacity: 1, rotate: 0 }}
@@ -132,7 +132,7 @@ export default function Navbar() {
                   ) : (
                     <Menu className="h-5 w-5" />
                   )}
-                </motion.span>
+                </m.span>
               </AnimatePresence>
             </button>
           </div>
@@ -140,7 +140,7 @@ export default function Navbar() {
           {/* Mobile menu */}
           <AnimatePresence initial={false}>
             {menuOpen && (
-              <motion.div
+              <m.div
                 id="mobile-menu"
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: "auto" }}
@@ -173,7 +173,7 @@ export default function Navbar() {
                     </Button>
                   </div>
                 </div>
-              </motion.div>
+              </m.div>
             )}
           </AnimatePresence>
         </Container>

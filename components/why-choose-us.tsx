@@ -1,7 +1,7 @@
 // components/home/why-choose-us.tsx
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import Image from "next/image";
 import Container from "./common/container";
 import SectionHeading from "./common/section-heading";
@@ -30,7 +30,7 @@ export default function WhyChooseUs() {
             className="flex flex-col lg:py-4 justify-between m-0 p-0 list-none"
           >
             {whyChooseUsBenefits.map((item, index) => (
-              <motion.li
+              <m.li
                 key={item.number}
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -58,12 +58,12 @@ export default function WhyChooseUs() {
                     {item.description}
                   </p>
                 </div>
-              </motion.li>
+              </m.li>
             ))}
           </ul>
 
           {/* RIGHT: Image, sets the height for the row */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, scale: 0.96 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -85,7 +85,7 @@ export default function WhyChooseUs() {
                 className="absolute inset-0 bg-linear-to-t from-primary/40 via-transparent to-transparent"
               />
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </Container>
     </section>
