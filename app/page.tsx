@@ -1,11 +1,14 @@
-import dynamic from "next/dynamic";
+// app/page.tsx
 import Navbar from "@/components/common/navbar";
 import Hero from "@/components/hero";
-const AboutUs = dynamic(() => import("@/components/about-us"));
-const ProductGrid = dynamic(() => import("@/components/product-grid"));
-const WhyChooseUs = dynamic(() => import("@/components/why-choose-us"));
-const ContactSection = dynamic(() => import("@/components/contact-section"));
-const Footer = dynamic(() => import("@/components/common/footer"));
+import AboutUs from "@/components/about-us";
+import ProductGrid from "@/components/product-grid";
+import WhyChooseUs from "@/components/why-choose-us";
+import ContactSection from "@/components/contact-section";
+import Footer from "@/components/common/footer";
+
+// 🚀 MAGIC LINE: Vercel serverless cold-start khatam — CDN se instant serve hoga
+export const dynamic = "force-static";
 
 export default function Page() {
   return (
