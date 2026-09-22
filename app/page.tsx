@@ -1,10 +1,11 @@
+import dynamic from "next/dynamic";
 import Navbar from "@/components/common/navbar";
 import Hero from "@/components/hero";
-import Footer from "@/components/common/footer";
-import AboutUs from "@/components/about-us";
-import ProductGrid from "@/components/product-grid";
-import ContactSection from "@/components/contact-section";
-import WhyChooseUs from "@/components/why-choose-us";
+const AboutUs = dynamic(() => import("@/components/about-us"));
+const ProductGrid = dynamic(() => import("@/components/product-grid"));
+const WhyChooseUs = dynamic(() => import("@/components/why-choose-us"));
+const ContactSection = dynamic(() => import("@/components/contact-section"));
+const Footer = dynamic(() => import("@/components/common/footer"));
 
 export default function Page() {
   return (
