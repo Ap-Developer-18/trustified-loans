@@ -1,7 +1,4 @@
 // components/home/why-choose-us.tsx
-"use client";
-
-import { m } from "framer-motion";
 import Image from "next/image";
 import Container from "./common/container";
 import SectionHeading from "./common/section-heading";
@@ -29,17 +26,9 @@ export default function WhyChooseUs() {
             role="list"
             className="flex flex-col lg:py-4 justify-between m-0 p-0 list-none"
           >
-            {whyChooseUsBenefits.map((item, index) => (
-              <m.li
+            {whyChooseUsBenefits.map((item) => (
+              <li
                 key={item.number}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{
-                  delay: index * 0.08,
-                  duration: 0.5,
-                  ease: "easeOut",
-                }}
                 className="group flex flex-col items-center text-center border-b border-primary/10 py-4 first:pt-0 last:border-b-0 last:pb-0 lg:flex-row lg:items-start lg:text-left lg:gap-5"
               >
                 <div
@@ -58,18 +47,12 @@ export default function WhyChooseUs() {
                     {item.description}
                   </p>
                 </div>
-              </m.li>
+              </li>
             ))}
           </ul>
 
           {/* RIGHT: Image, sets the height for the row */}
-          <m.div
-            initial={{ opacity: 0, scale: 0.96 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            className="relative h-full lg:sticky lg:top-24 lg:self-start"
-          >
+          <div className="relative h-full lg:sticky lg:top-24 lg:self-start">
             <div className="relative h-full aspect-4/3 w-full overflow-hidden rounded-3xl shadow-lg shadow-primary/10">
               <Image
                 src="/why-us.webp"
@@ -85,7 +68,7 @@ export default function WhyChooseUs() {
                 className="absolute inset-0 bg-linear-to-t from-primary/40 via-transparent to-transparent"
               />
             </div>
-          </m.div>
+          </div>
         </div>
       </Container>
     </section>

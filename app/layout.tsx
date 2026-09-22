@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Gabarito, Judson } from "next/font/google";
 import "./globals.css";
-import { domAnimation, LazyMotion } from "framer-motion";
 
 const gabarito = Gabarito({
   subsets: ["latin"],
@@ -70,9 +69,7 @@ export default function RootLayout({
       className={`${gabarito.variable} ${judson.variable}`}
     >
       <body className="font-sans bg-background text-foreground antialiased">
-        <LazyMotion features={domAnimation} strict>
-          <main className="min-h-screen flex flex-col">{children}</main>
-        </LazyMotion>
+        <main className="min-h-screen flex flex-col">{children}</main>
       </body>
     </html>
   );

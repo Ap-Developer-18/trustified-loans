@@ -1,7 +1,6 @@
 // components/layout/footer.tsx
 "use client";
 
-import React from "react";
 import Link from "next/link";
 import Container from "../common/container";
 import { Phone, Mail } from "lucide-react";

@@ -1,15 +1,6 @@
 // components/home/about-us.tsx
-"use client";
-
-import { m } from "framer-motion";
 import Image from "next/image";
 import Container from "./common/container";
-
-const cardAnimation = {
-  initial: { opacity: 0, y: 20 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: "50px" },
-};
 
 export default function AboutUs() {
   return (
@@ -20,11 +11,7 @@ export default function AboutUs() {
     >
       <Container>
         {/* Section Heading */}
-        <m.div
-          {...cardAnimation}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-          className="mx-auto mb-6 max-w-2xl px-2 text-center sm:mb-10 sm:px-0"
-        >
+        <div className="mx-auto mb-6 max-w-2xl px-2 text-center sm:mb-10 sm:px-0">
           <h2
             id="about-heading"
             className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight leading-tight mb-2 text-cyprus"
@@ -35,56 +22,54 @@ export default function AboutUs() {
             We make finding and understanding the right loan simple. Our team is
             here to guide you from your first enquiry to the loan process.
           </p>
-        </m.div>
+        </div>
 
-        {/* Bento Layout - RESTORED ORIGINAL EXACT DOM ORDER */}
+        {/* Bento Layout */}
         <div className="grid grid-cols-1 gap-3 sm:gap-4 pb-2 lg:grid-cols-4 lg:items-stretch">
-          {/* 1. Large Image */}
-          <m.div
-            {...cardAnimation}
-            transition={{ duration: 0.55, ease: "easeOut" }}
+          {/* 1. Large Image (Mobile vs Desktop conditional via CSS) */}
+          <div
             className="group relative aspect-4/3 lg:aspect-auto overflow-hidden
             rounded-[20px] bg-surface p-1 shadow-sm ring-1 ring-cyprus/5
             lg:col-span-1 lg:row-span-2 lg:rounded-3xl"
           >
-            <Image
-              src="/about-us-one.webp"
-              alt="Professional guidance for loan consultation"
-              fill
-              loading="lazy"
-              // 🚀 LCP FIX: Adjusted sizes to prevent downloading 100vw images on mobile
-              sizes="(max-width: 640px) 90vw, (max-width: 1024px) 50vw, 25vw"
-              quality={70}
-              className="rounded-2xl object-top object-cover
-              transition-transform max-lg:hidden duration-700 group-hover:scale-[1.03] lg:rounded-[20px]"
-            />
-            <Image
-              src="/about-us-two.webp"
-              alt="Client discussing loan options with our team"
-              fill
-              loading="lazy"
-              // 🚀 LCP FIX: Accurate viewport sizing
-              sizes="(max-width: 640px) 90vw, (max-width: 1024px) 50vw, 25vw"
-              quality={70}
-              className="rounded-2xl object-top object-cover
-              transition-transform lg:hidden duration-700 group-hover:scale-[1.03] lg:rounded-[20px]"
-            />
+            {/* Mobile Image */}
+            <div className="relative w-full h-full lg:hidden">
+              <Image
+                src="/about-us-two.webp"
+                alt="Client discussing loan options with our team"
+                fill
+                loading="lazy"
+                sizes="90vw"
+                quality={70}
+                className="rounded-2xl object-top object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+              />
+            </div>
+            {/* Desktop Image */}
+            <div className="relative w-full h-full hidden lg:block">
+              <Image
+                src="/about-us-one.webp"
+                alt="Professional guidance for loan consultation"
+                fill
+                loading="lazy"
+                sizes="25vw"
+                quality={70}
+                className="rounded-[20px] object-top object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+              />
+            </div>
 
             <div
               className="absolute inset-x-2.5 bottom-2.5 rounded-xl
               border border-white/10 bg-black/25 px-3 py-2 backdrop-blur-md
-              sm:inset-x-4 sm:bottom-4 sm:rounded-2xl sm:px-4 sm:py-3"
+              sm:inset-x-4 sm:bottom-4 sm:rounded-2xl sm:px-4 sm:py-3 z-10"
             >
               <p className="text-[10px] font-semibold text-white sm:text-xs">
                 Here to help you make the right choice.
               </p>
             </div>
-          </m.div>
+          </div>
 
           {/* 2. Simple Loan Process */}
-          <m.div
-            {...cardAnimation}
-            transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
+          <div
             className="rounded-[20px] bg-surface p-6 shadow-sm ring-1 ring-cyprus/5
             transition-all duration-300 hover:-translate-y-1 hover:shadow-md
             sm:rounded-3xl lg:col-span-1"
@@ -99,33 +84,28 @@ export default function AboutUs() {
               We make the loan process easy to understand and help you with the
               right loan option and required documents.
             </p>
-          </m.div>
+          </div>
 
-          {/* 3. Second Image - Editor warnings fixed (min-h-45, min-h-60, rounded-2xl) */}
-          <m.div
-            {...cardAnimation}
-            transition={{ duration: 0.5, delay: 0.15, ease: "easeOut" }}
-            className="group relative max-lg:hidden min-h-45 overflow-hidden
+          {/* 3. Second Image — Desktop only via CSS */}
+          <div
+            className="group relative min-h-45 overflow-hidden
             rounded-[20px] bg-surface p-1 shadow-sm ring-1 ring-cyprus/5
-            sm:min-h-60 sm:rounded-3xl lg:col-span-1"
+            sm:min-h-60 sm:rounded-3xl lg:col-span-1 hidden lg:block"
           >
             <Image
               src="/about-us-two.webp"
               alt="Business and financial growth"
               fill
               loading="lazy"
-              // 🚀 LCP FIX: Reduced sizes prop for smaller grid items
-              sizes="(max-width: 640px) 50vw, 25vw"
+              sizes="25vw"
               quality={70}
-              className="rounded-2xl object-cover transition-transform duration-700
-              group-hover:scale-[1.03] lg:rounded-[20px]"
+              className="rounded-[20px] object-cover transition-transform duration-700
+              group-hover:scale-[1.03]"
             />
-          </m.div>
+          </div>
 
           {/* 4. Right Loan Options */}
-          <m.div
-            {...cardAnimation}
-            transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
+          <div
             className="rounded-[20px] bg-surface p-6 shadow-sm ring-1 ring-cyprus/5
             transition-all duration-300 hover:-translate-y-1 hover:shadow-md
             sm:rounded-3xl lg:col-span-1"
@@ -140,12 +120,10 @@ export default function AboutUs() {
               Whether you need a home, personal, business or property loan, we
               help you explore options based on your needs.
             </p>
-          </m.div>
+          </div>
 
           {/* 5. Transparency */}
-          <m.div
-            {...cardAnimation}
-            transition={{ duration: 0.5, delay: 0.25, ease: "easeOut" }}
+          <div
             className="rounded-[20px] bg-surface p-6 shadow-sm ring-1 ring-cyprus/5
             transition-all duration-300 hover:-translate-y-1 hover:shadow-md
             sm:rounded-3xl lg:col-span-2"
@@ -165,12 +143,10 @@ export default function AboutUs() {
                 </p>
               </div>
             </div>
-          </m.div>
+          </div>
 
           {/* 6. Support */}
-          <m.div
-            {...cardAnimation}
-            transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" }}
+          <div
             className="rounded-[20px] bg-white lg:bg-cyprus p-6 shadow-sm
             transition-all duration-300 hover:-translate-y-1 hover:shadow-md
             sm:rounded-3xl lg:col-span-1"
@@ -185,7 +161,7 @@ export default function AboutUs() {
               From your first enquiry to the loan process, our team is here to
               guide and support you.
             </p>
-          </m.div>
+          </div>
         </div>
       </Container>
     </section>

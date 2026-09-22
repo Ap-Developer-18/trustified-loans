@@ -1,14 +1,8 @@
 // components/home/navbar.tsx
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import Link from "next/link";
-import {
-  m,
-  AnimatePresence,
-  useScroll,
-  useMotionValueEvent,
-} from "framer-motion";
 import { Menu, X, ArrowRight } from "lucide-react";
 import Container from "../common/container";
 import Button from "../common/button";
@@ -39,10 +33,14 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const { scrollY } = useScroll();
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    setScrolled(latest > 20);
-  });
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const closeMenu = useCallback(() => setMenuOpen(false), []);
 
@@ -53,12 +51,6 @@ export default function Navbar() {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50">
-      {/* 
-        🚀 PERFORMANCE FIX (PageSpeed Insights): 
-        Removed Framer Motion for box-shadow/backdrop-filter. 
-        Native CSS transitions are composited by the GPU, fixing the CLS/Animation warning.
-        UI values are EXACTLY the same.
-      */}
       <div
         className={`transition-all duration-300 ease-in-out ${
           scrolled
@@ -75,7 +67,6 @@ export default function Navbar() {
               className="flex items-center gap-1"
               aria-label="Trustified Loans Home"
             >
-              {/* 🚀 LCP & ACCESSIBILITY: priority added for instant load, and descriptive alt text */}
               <Image
                 width={40}
                 height={40}
@@ -119,63 +110,47 @@ export default function Navbar() {
               aria-expanded={menuOpen}
               aria-controls="mobile-menu"
             >
-              <AnimatePresence mode="wait" initial={false}>
-                <m.span
-                  key={menuOpen ? "close" : "open"}
-                  initial={{ opacity: 0, rotate: -90 }}
-                  animate={{ opacity: 1, rotate: 0 }}
-                  exit={{ opacity: 0, rotate: 90 }}
-                  transition={{ duration: 0.18 }}
-                >
-                  {menuOpen ? (
-                    <X className="h-5 w-5" />
-                  ) : (
-                    <Menu className="h-5 w-5" />
-                  )}
-                </m.span>
-              </AnimatePresence>
+              {menuOpen ? (
+                <X className="h-5 w-5" />
+              ) : (
+                <Menu className="h-5 w-5" />
+              )}
             </button>
           </div>
 
-          {/* Mobile menu */}
-          <AnimatePresence initial={false}>
-            {menuOpen && (
-              <m.div
-                id="mobile-menu"
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: "auto" }}
-                exit={{ opacity: 0, height: 0 }}
-                transition={{ duration: 0.25, ease: "easeOut" }}
-                className="overflow-hidden lg:hidden pb-3"
-              >
-                <div className="rounded-2xl bg-surface p-4 border border-cyprus/10">
-                  <nav className="flex flex-col">
-                    {NAV_LINKS.map(({ label, href }) => (
-                      <Link
-                        key={href}
-                        href={href}
-                        onClick={closeMenu}
-                        className={mobileLinkClass}
-                      >
-                        {label}
-                      </Link>
-                    ))}
-                  </nav>
+          {/* Mobile menu - Native smooth collapse/expand via grid/max-height or conditional classes */}
+          <div
+            id="mobile-menu"
+            className={`overflow-hidden transition-all duration-200 ease-out lg:hidden ${
+              menuOpen ? "max-h-96 pb-3 opacity-100" : "max-h-0 pb-0 opacity-0"
+            }`}
+          >
+            <div className="rounded-2xl bg-surface p-4 border border-cyprus/10 shadow-lg">
+              <nav className="flex flex-col">
+                {NAV_LINKS.map(({ label, href }) => (
+                  <Link
+                    key={href}
+                    href={href}
+                    onClick={closeMenu}
+                    className={mobileLinkClass}
+                  >
+                    {label}
+                  </Link>
+                ))}
+              </nav>
 
-                  <div className="mt-2 pt-2 border-t border-cyprus/5">
-                    <Button
-                      variant="primary"
-                      size="sm"
-                      onClick={scrollToContact}
-                      className="w-full rounded-xl py-3.5"
-                    >
-                      Contact Us
-                    </Button>
-                  </div>
-                </div>
-              </m.div>
-            )}
-          </AnimatePresence>
+              <div className="mt-2 pt-2 border-t border-cyprus/5">
+                <Button
+                  variant="primary"
+                  size="sm"
+                  onClick={scrollToContact}
+                  className="w-full rounded-xl py-3.5"
+                >
+                  Contact Us
+                </Button>
+              </div>
+            </div>
+          </div>
         </Container>
       </div>
     </header>

@@ -1,7 +1,7 @@
+// components/home/consultation-form.tsx
 "use client";
 
 import React, { useEffect, useState, useRef } from "react";
-import { m, AnimatePresence } from "framer-motion";
 import { z } from "zod";
 import Button from "./common/button";
 
@@ -105,11 +105,9 @@ function CustomDropdown({
     <div ref={wrapperRef} className="relative w-full h-auto self-start">
       <button
         type="button"
-        // ♿ ACCESSIBILITY: Screen readers ko batane ke liye ki ye dropdown hai
         aria-haspopup="listbox"
         aria-expanded={open}
         onClick={() => setOpen((p) => !p)}
-        // 🚀 iOS FIX: Changed text-sm to text-[16px] sm:text-sm to match inputs and prevent any mobile zoom mismatch
         className={`w-full flex items-center justify-between bg-black/3 border rounded-2xl px-5 h-13 sm:h-14 text-[16px] sm:text-sm transition-colors focus:outline-none hover:bg-black/5 ${
           error
             ? "border-red-500/60"
@@ -123,14 +121,13 @@ function CustomDropdown({
         >
           {selected ? selected.label : placeholder}
         </span>
-        <m.svg
-          animate={{ rotate: open ? 180 : 0 }}
-          transition={{ duration: 0.2 }}
+        <svg
+          style={{ transform: open ? "rotate(180deg)" : "rotate(0deg)" }}
+          className="transition-transform duration-200 text-muted shrink-0 ml-2"
           width="16"
           height="16"
           viewBox="0 0 16 16"
           fill="none"
-          className="text-muted shrink-0 ml-2"
         >
           <path
             d="M4 6l4 4 4-4"
@@ -139,64 +136,56 @@ function CustomDropdown({
             strokeLinecap="round"
             strokeLinejoin="round"
           />
-        </m.svg>
+        </svg>
       </button>
 
       {error && <p className="mt-1.5 text-xs text-red-500">{error}</p>}
 
-      <AnimatePresence>
-        {open && (
-          <m.div
-            initial={{ opacity: 0, y: 4 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 4 }}
-            transition={{ duration: 0.15 }}
-            className="absolute left-0 right-0 mt-2 rounded-2xl border border-border bg-surface shadow-2xl z-50 overflow-hidden flex flex-col"
+      {open && (
+        <div className="absolute left-0 right-0 mt-2 rounded-2xl border border-border bg-surface shadow-2xl z-50 overflow-hidden flex flex-col">
+          <div
+            role="listbox"
+            className="max-h-48 overflow-y-auto overscroll-contain touch-pan-y"
           >
-            <div
-              role="listbox"
-              className="max-h-48 overflow-y-auto overscroll-contain touch-pan-y"
-            >
-              {options.map((opt) => (
-                <button
-                  key={opt.value}
-                  type="button"
-                  role="option"
-                  aria-selected={value === opt.value}
-                  onClick={() => {
-                    onChange(opt.value);
-                    setOpen(false);
-                  }}
-                  className={`w-full text-left px-4 py-3 transition-colors flex items-center justify-between ${
-                    value === opt.value
-                      ? "text-cyprus bg-cyprus/5 font-semibold"
-                      : "text-muted hover:text-cyprus hover:bg-black/2"
-                  }`}
-                >
-                  <span>{opt.label}</span>
-                  {value === opt.value && (
-                    <svg
-                      width="14"
-                      height="14"
-                      viewBox="0 0 14 14"
-                      fill="none"
-                      className="text-cyprus shrink-0 ml-2"
-                    >
-                      <path
-                        d="M2.5 7l3.5 3.5 5.5-6"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  )}
-                </button>
-              ))}
-            </div>
-          </m.div>
-        )}
-      </AnimatePresence>
+            {options.map((opt) => (
+              <button
+                key={opt.value}
+                type="button"
+                role="option"
+                aria-selected={value === opt.value}
+                onClick={() => {
+                  onChange(opt.value);
+                  setOpen(false);
+                }}
+                className={`w-full text-left px-4 py-3 transition-colors flex items-center justify-between ${
+                  value === opt.value
+                    ? "text-cyprus bg-cyprus/5 font-semibold"
+                    : "text-muted hover:text-cyprus hover:bg-black/2"
+                }`}
+              >
+                <span>{opt.label}</span>
+                {value === opt.value && (
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 14 14"
+                    fill="none"
+                    className="text-cyprus shrink-0 ml-2"
+                  >
+                    <path
+                      d="M2.5 7l3.5 3.5 5.5-6"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                )}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
@@ -282,7 +271,7 @@ export default function ConsultationForm({
   };
 
   return (
-    <div className="relative w-full h-full overflow-hidden rounded-3xl bg-surface p-6 sm:p-10 border border-border/80 shadow-[0_25px_60px_-15px_rgba(0,71,65,0.08)]">
+    <div className="relative w-full h-full overflow-hidden rounded-3xl bg-surface p-4 sm:p-6 border border-border/80 shadow-[0_25px_60px_-15px_rgba(0,71,65,0.08)]">
       <div className="pointer-events-none absolute -right-24 -top-24 h-56 w-56 rounded-full bg-cyprus/4 blur-3xl" />
 
       <div className="relative mb-8">
@@ -327,12 +316,11 @@ export default function ConsultationForm({
               id="full-name"
               type="text"
               name="name"
-              autoComplete="name" // ♿ ACCESSIBILITY: PageSpeed requirement for forms
+              autoComplete="name"
               disabled={isSubmitting}
               value={form.fullName}
               onChange={setField("fullName")}
               placeholder="e.g., Daksh Rawat"
-              // 🚀 iOS FIX: 'text-[16px] sm:text-sm' lagaya. Mobile pe exactly 16px rahega toh iOS auto-zoom nahi karega. Desktop pe wapas 14px ho jayega.
               className={`h-13 sm:h-14 w-full rounded-2xl bg-black/3 px-5 text-[16px] sm:text-sm font-medium text-cyprus outline-none transition-all duration-300 placeholder:text-muted/40 hover:bg-black/5 focus:bg-white focus:ring-2 focus:ring-cyprus/20 border ${errors.fullName ? "border-red-500" : "border-transparent focus:border-cyprus"}`}
             />
             {errors.fullName && (
@@ -398,14 +386,13 @@ export default function ConsultationForm({
                 id="phone"
                 type="tel"
                 name="tel"
-                autoComplete="tel" // ♿ ACCESSIBILITY requirement
+                autoComplete="tel"
                 disabled={isSubmitting}
                 inputMode="numeric"
                 maxLength={10}
                 value={form.phone}
                 onChange={handlePhoneChange}
                 placeholder="98765 43210"
-                // 🚀 iOS FIX applied here as well
                 className="min-w-0 flex-1 bg-transparent px-4 text-[16px] sm:text-sm font-medium text-cyprus outline-none placeholder:text-muted/40"
               />
             </div>
