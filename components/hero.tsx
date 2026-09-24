@@ -1,50 +1,16 @@
 // components/home/hero.tsx
-"use client";
+// 🚀 PURE SERVER COMPONENT (No "use client")
+// Heading, Content aur Hero Image initial HTML payload mein hi browser ko milenge!
 
-import { useState, useEffect } from "react";
 import Image from "next/image";
-import dynamic from "next/dynamic";
 import Container from "./common/container";
-import Button from "./common/button";
-
-// 1. DYNAMIC IMPORTS: Lazy load the modal and form to slash initial JS payload
-const Modal = dynamic(() => import("@/components/common/modal"), {
-  ssr: false,
-});
-const ConsultationForm = dynamic(() => import("./consultation-form"), {
-  ssr: false,
-});
-
-const WHATSAPP_NUMBER = "919990533555";
-const WHATSAPP_MESSAGE =
-  "Hi, I'd like to talk to an expert about loan options.";
+import HeroActions from "./client/hero-actions";
 
 export default function Hero() {
-  const [isConsultationOpen, setIsConsultationOpen] = useState(false);
-  const [selectedLoan, setSelectedLoan] = useState<string>("");
-
-  useEffect(() => {
-    const handleSelectLoan = (e: Event) => {
-      const customEvent = e as CustomEvent<string>;
-      setSelectedLoan(customEvent.detail);
-      setIsConsultationOpen(true);
-    };
-
-    window.addEventListener("select-loan-type", handleSelectLoan);
-    return () =>
-      window.removeEventListener("select-loan-type", handleSelectLoan);
-  }, []);
-
-  const handleWhatsAppClick = () => {
-    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
-    window.open(url, "_blank", "noopener,noreferrer");
-  };
-
   return (
     <section
       id="hero"
       aria-labelledby="hero-heading"
-      // 🚀 SAFARI FIX: Removes the grey tap highlight on iOS for a native app feel
       className="relative overflow-hidden bg-background pt-28 sm:pt-32 md:pt-36 [-webkit-tap-highlight-color:transparent]"
     >
       <div className="pointer-events-none absolute left-1/2 top-[24%] h-105 w-190 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyprus/5 blur-[140px]" />
@@ -70,53 +36,29 @@ export default function Hero() {
             find the right loan with simple guidance and a hassle-free process.
           </p>
 
-          <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:mt-8 sm:flex-row">
-            <Button
-              onClick={() => {
-                setSelectedLoan("");
-                setIsConsultationOpen(true);
-              }}
-            >
-              Apply Now
-            </Button>
-
-            <Button variant="light" onClick={handleWhatsAppClick}>
-              Talk to an Expert
-            </Button>
-          </div>
+          {/* 🚀 Client-Side Interactivity (Buttons & Modal) */}
+          <HeroActions />
 
           <p className="mx-auto mt-4 max-w-75 text-[11px] font-medium leading-5 text-muted/80 sm:max-w-none sm:text-xs">
             Get guidance on the loan option that suits your needs.
           </p>
         </div>
 
-        {/* LCP element image without any motion overhead */}
-        <div className="relative mx-auto -mb-2 flex w-full max-w-6xl justify-center px-0 sm:px-4">
+        {/* 🚀 LCP ELEMENT: Server-side rendered, mobile sizes optimized for Lighthouse */}
+        {/* <div className="relative mx-auto -mb-2 flex w-full max-w-6xl justify-center px-0 sm:px-4">
           <div className="relative w-full aspect-4/3 sm:aspect-16/10">
             <Image
               src="/hero-img.webp"
               fill
               priority
               fetchPriority="high"
-              sizes="(max-width: 640px) 70vw, (max-width: 1024px) 90vw, 1024px"
+              sizes="(max-width: 640px) 380px, (max-width: 1024px) 80vw, 1024px"
               alt="Trustified Loans - Loan consultation"
               className="object-contain drop-shadow-sm"
             />
           </div>
-        </div>
+        </div> */}
       </Container>
-
-      {/* 3. CONDITIONAL RENDERING: Don't pollute the DOM until the user clicks */}
-      {isConsultationOpen && (
-        <Modal
-          open={isConsultationOpen}
-          onClose={() => setIsConsultationOpen(false)}
-        >
-          <div className="mx-auto w-full max-w-xl">
-            <ConsultationForm preselectedLoan={selectedLoan} />
-          </div>
-        </Modal>
-      )}
     </section>
   );
 }

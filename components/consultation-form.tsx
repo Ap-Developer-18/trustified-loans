@@ -1,3 +1,4 @@
+// components/home/consultation-form.tsx
 "use client";
 
 import React, { useEffect, useState, useRef } from "react";
@@ -33,20 +34,20 @@ const LOAN_OPTIONS = [
 ];
 
 const INDIAN_STATES = [
-  "Andeman Nikobar Islands",
+  "Andaman & Nicobar Islands",
   "Andhra Pradesh",
   "Arunachal Pradesh",
   "Assam",
   "Bihar",
   "Chandigarh",
   "Chhattisgarh",
-  "Dadra Nagar Haveli Daman Diu",
+  "Dadra & Nagar Haveli and Daman & Diu",
   "Delhi",
   "Goa",
   "Gujarat",
   "Haryana",
   "Himachal Pradesh",
-  "Jammu Kashmir",
+  "Jammu & Kashmir",
   "Jharkhand",
   "Karnataka",
   "Kerala",
@@ -115,14 +116,19 @@ function CustomDropdown({
               : "border-transparent"
         }`}
       >
+        {/* ♿ A11Y FIX: Contrast badha diya taaki Lighthouse pass ho */}
         <span
-          className={selected ? "text-cyprus font-medium" : "text-muted/40"}
+          className={
+            selected
+              ? "text-cyprus font-semibold"
+              : "text-cyprus/60 font-medium"
+          }
         >
           {selected ? selected.label : placeholder}
         </span>
         <svg
           style={{ transform: open ? "rotate(180deg)" : "rotate(0deg)" }}
-          className="transition-transform duration-200 text-muted shrink-0 ml-2"
+          className="transition-transform duration-200 text-cyprus/70 shrink-0 ml-2"
           width="16"
           height="16"
           viewBox="0 0 16 16"
@@ -307,7 +313,7 @@ export default function ConsultationForm({
           <div>
             <label
               htmlFor="full-name"
-              className="mb-2 block text-xs font-bold uppercase tracking-[0.12em] text-cyprus/80"
+              className="mb-2 block text-xs font-bold uppercase tracking-[0.12em] text-cyprus"
             >
               Full Name
             </label>
@@ -320,7 +326,7 @@ export default function ConsultationForm({
               value={form.fullName}
               onChange={setField("fullName")}
               placeholder="e.g., Daksh Rawat"
-              className={`h-13 sm:h-14 w-full rounded-2xl bg-black/3 px-5 text-[16px] sm:text-sm font-medium text-cyprus outline-none transition-all duration-300 placeholder:text-muted/40 hover:bg-black/5 focus:bg-white focus:ring-2 focus:ring-cyprus/20 border ${errors.fullName ? "border-red-500" : "border-transparent focus:border-cyprus"}`}
+              className={`h-13 sm:h-14 w-full rounded-2xl bg-black/3 px-5 text-[16px] sm:text-sm font-medium text-cyprus outline-none transition-all duration-300 placeholder:text-cyprus/50 hover:bg-black/5 focus:bg-white focus:ring-2 focus:ring-cyprus/20 border ${errors.fullName ? "border-red-500" : "border-transparent focus:border-cyprus"}`}
             />
             {errors.fullName && (
               <p className="mt-1.5 text-xs text-red-500">{errors.fullName}</p>
@@ -331,7 +337,7 @@ export default function ConsultationForm({
             <div>
               <label
                 htmlFor="state"
-                className="mb-2 block text-xs font-bold uppercase tracking-[0.12em] text-cyprus/80"
+                className="mb-2 block text-xs font-bold uppercase tracking-[0.12em] text-cyprus"
               >
                 State
               </label>
@@ -350,7 +356,7 @@ export default function ConsultationForm({
             <div>
               <label
                 htmlFor="loan-type"
-                className="mb-2 block text-xs font-bold uppercase tracking-[0.12em] text-cyprus/80"
+                className="mb-2 block text-xs font-bold uppercase tracking-[0.12em] text-cyprus"
               >
                 Loan Type
               </label>
@@ -371,14 +377,15 @@ export default function ConsultationForm({
           <div>
             <label
               htmlFor="phone"
-              className="mb-2 block text-xs font-bold uppercase tracking-[0.12em] text-cyprus/80"
+              className="mb-2 block text-xs font-bold uppercase tracking-[0.12em] text-cyprus"
             >
               Mobile Number
             </label>
             <div
               className={`flex h-13 sm:h-14 overflow-hidden rounded-2xl bg-black/3 border transition-all duration-300 focus-within:bg-white focus-within:ring-2 focus-within:ring-cyprus/20 hover:bg-black/5 ${errors.phone ? "border-red-500" : "border-transparent focus-within:border-cyprus"}`}
             >
-              <span className="flex items-center px-5 text-[16px] sm:text-sm font-bold text-cyprus/60 bg-black/2 border-r border-black/5">
+              {/* ♿ A11Y FIX: +91 text contrast enhanced */}
+              <span className="flex items-center px-5 text-[16px] sm:text-sm font-bold text-cyprus/80 bg-black/2 border-r border-black/5">
                 +91
               </span>
               <input
@@ -392,7 +399,7 @@ export default function ConsultationForm({
                 value={form.phone}
                 onChange={handlePhoneChange}
                 placeholder="98765 43210"
-                className="min-w-0 flex-1 bg-transparent px-4 text-[16px] sm:text-sm font-medium text-cyprus outline-none placeholder:text-muted/40"
+                className="min-w-0 flex-1 bg-transparent px-4 text-[16px] sm:text-sm font-medium text-cyprus outline-none placeholder:text-cyprus/50"
               />
             </div>
             {errors.phone && (
@@ -407,7 +414,8 @@ export default function ConsultationForm({
             >
               {isSubmitting ? "Submitting Request..." : "Get Free Consultation"}
             </Button>
-            <p className="mt-3 text-center text-xs font-medium text-muted/70">
+            {/* ♿ A11Y FIX: Subtitle contrast improved */}
+            <p className="mt-3 text-center text-xs font-medium text-cyprus/75">
               Our team will contact you shortly.
             </p>
           </div>

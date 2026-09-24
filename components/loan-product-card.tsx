@@ -1,37 +1,16 @@
-"use client";
+// components/home/loan-product-card.tsx
+// 🚀 PURE SERVER COMPONENT (Card ka HTML seedha server se render hoga)
 
-import { ArrowUpRight } from "lucide-react";
 import { LoanProduct } from "@/types/loan";
+import LoanApplyButton from "./client/loan-apply-button";
 
 type LoanProductCardProps = {
   product: LoanProduct;
   index: number;
 };
 
-const loanValueMap: Record<string, string> = {
-  "Home Loan": "home-loan",
-  "Personal Loan": "personal-loan",
-  "Business Loan": "business-loan",
-  "Loan Against Property": "loan-against-property",
-  "Project Loan": "project-loan",
-  "Cash Credit Limit": "cash-credit",
-  "Overdraft Facility": "overdraft",
-  "Bridge Finance": "bridge-finance",
-  "NPA & OTS Funding": "npa-ots-funding",
-  "Stressed Asset Finance": "stressed-asset-finance",
-};
-
 export default function LoanProductCard({ product }: LoanProductCardProps) {
   const IconComponent = product.icon;
-
-  const handleApply = (e: React.MouseEvent) => {
-    e.preventDefault();
-    const formValue = loanValueMap[product.title] || "";
-
-    window.dispatchEvent(
-      new CustomEvent("select-loan-type", { detail: formValue }),
-    );
-  };
 
   return (
     <article
@@ -61,23 +40,8 @@ export default function LoanProductCard({ product }: LoanProductCardProps) {
         </p>
       </div>
 
-      <button
-        type="button"
-        onClick={handleApply}
-        aria-label={`Apply for ${product.title}`}
-        className="mt-6 flex w-full items-center justify-between
-        border-t border-white/15 pt-5 cursor-pointer group/btn focus:outline-none text-left"
-      >
-        <span className="text-xs font-bold uppercase tracking-[0.14em] text-sand/90 transition-colors duration-200 group-hover/btn:text-white">
-          Apply Now
-        </span>
-        <div
-          aria-hidden="true"
-          className="flex h-10 w-10 items-center justify-center rounded-full bg-white/20 text-sand transition-all duration-300 group-hover/btn:bg-sand group-hover/btn:text-cyprus"
-        >
-          <ArrowUpRight className="h-4 w-4" />
-        </div>
-      </button>
+      {/* 🚀 Client Interactivity sirf button mein hai */}
+      <LoanApplyButton title={product.title} />
     </article>
   );
 }

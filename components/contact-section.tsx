@@ -1,8 +1,14 @@
 // components/home/contact-section.tsx
 import { MapPin, Phone, Mail, ArrowUpRight, Clock } from "lucide-react";
+import dynamic from "next/dynamic";
 import Container from "./common/container";
-import ConsultationForm from "./consultation-form";
 import SectionHeading from "./common/section-heading";
+
+const ConsultationForm = dynamic(() => import("./consultation-form"), {
+  loading: () => (
+    <div className="h-130 w-full animate-pulse rounded-3xl bg-surface border border-border/80" />
+  ),
+});
 
 const CONTACT_DETAILS = [
   {

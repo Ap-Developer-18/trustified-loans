@@ -1,5 +1,3 @@
-"use client";
-
 import Container from "./common/container";
 import SectionHeading from "./common/section-heading";
 import LoanProductCard from "./loan-product-card";

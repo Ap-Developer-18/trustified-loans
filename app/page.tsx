@@ -7,18 +7,15 @@ import WhyChooseUs from "@/components/why-choose-us";
 import ContactSection from "@/components/contact-section";
 import Footer from "@/components/common/footer";
 
-// 🚀 MAGIC LINE: Vercel serverless cold-start khatam — CDN se instant serve hoga
-export const dynamic = "force-static";
-
 export default function Page() {
   return (
     <>
-      <Navbar />
-      <Hero />
+      {/* <Navbar /> */}
+      {/* <Hero /> */}
       <AboutUs />
       <ProductGrid />
       <WhyChooseUs />
-      <ContactSection />
+      {/* <ContactSection /> */}
       <Footer />
     </>
   );
