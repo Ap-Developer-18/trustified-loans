@@ -10,12 +10,12 @@ import Footer from "@/components/common/footer";
 export default function Page() {
   return (
     <>
-      {/* <Navbar /> */}
-      {/* <Hero /> */}
+      <Navbar />
+      <Hero />
       <AboutUs />
       <ProductGrid />
       <WhyChooseUs />
-      {/* <ContactSection /> */}
+      <ContactSection />
       <Footer />
     </>
   );
